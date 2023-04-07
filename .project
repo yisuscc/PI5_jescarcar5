@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>PI5_jescarcar5</name>
+	<comment></comment>
+	<projects>
+		<project>DatosCompartidos</project>
+		<project>Geneticos</project>
+		<project>Grafos</project>
+		<project>ParteComun</project>
+		<project>Solve</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+</projectDescription>

@@ -1,4 +1,4 @@
-package ejemplos.ejercicio2.manual;
+package ejemplos.ejemplo2.manual;
 
 import java.util.Set;
 

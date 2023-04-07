@@ -1,4 +1,4 @@
-package ejemplos.ejercicio2;
+package ejemplos.ejemplo2;
 
 import us.lsi.graphs.virtual.SimpleEdgeAction;
 

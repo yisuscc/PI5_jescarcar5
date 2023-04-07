@@ -4,7 +4,7 @@ import java.util.List;
 
 import _datos.DatosSubconjuntos;
 import _utils.TestsPI5;
-import ejemplos.ejercicio2.manual.SubconjuntosBT;
+import ejemplos.ejemplo2.manual.SubconjuntosBT;
 import us.lsi.common.String2;
 
 public class TestsEM2 {

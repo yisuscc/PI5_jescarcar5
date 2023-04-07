@@ -6,7 +6,7 @@ import _datos.DatosSubconjuntos;
 import _soluciones.SolucionSubconjuntos;
 import _utils.GraphsPI5;
 import _utils.TestsPI5;
-import ejemplos.ejercicio2.SubconjuntosVertex;
+import ejemplos.ejemplo2.SubconjuntosVertex;
 
 public class TestsEjemplo2 {
 

@@ -1,4 +1,4 @@
-package ejemplos.ejercicio3;
+package ejemplos.ejemplo3;
 
 import java.util.Comparator;
 import java.util.List;

@@ -1,0 +1,4 @@
+Algoritmo voraz: toma la dmejor decision en cada etapa del problema (no tienen en cuentaconsecuencias futuras)
+Algoritmo A* algoritmo de busqueda heuristica para encontrarel camaino mas corto  en un grafo ponderado (cada arista tiene un peso)
+Algoritmo de Prtogramación dinamica resuelve un probleam duvidendolo en subproblemas mas peueños y resolviendo casda subproblema una sola vez.
+Algoritmo de backtracking: explora todas las posibles soluciones , retrocediendo cuando una solución parcial no puede llevar a una solución final.

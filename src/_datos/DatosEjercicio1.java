@@ -61,32 +61,42 @@ public class DatosEjercicio1 {
 public static Cafe getCafeNom(String nom) {
 	return cafe.stream().filter(c->c.nombre().equals(nom)).findFirst().get();
 }
-	public static String cafeId(Integer id) {
-		return cafe.get(id).nombre();
+	public static String getCafe(Integer index) {
+		return cafe.get(index).nombre();
 	}
 
-	public static String variedadId(Integer id) {
-		return variedades.get(id).nombre();
+	public static String getVarCafe(Integer index) {
+		return variedades.get(index).nombre();
 	}
 
 	// nint tipos cafe
-	public static Integer getTiposCafe() {
+	public static Integer getTiposCafe() { //n
 		return cafe.size();
 	}
 
 	// int var cafe
-	public static Integer getVarCafe() {
+	public static Integer getVarCafe() { // m
 		return variedades.size();
 	}
-
-	// cantidad
-	public static List<Cafe> getCafes() {
-		return cafe;
+	public static Integer getCafeDisp(Integer tipoCafe) {//entra j
+		return cafe.get(tipoCafe).peso();
 	}
-
-	public static List<VarCafe> getVariedades() {
-		return variedades;
+	public static Double getBeneficioVar(Integer tipoVar) {// entra i
+		return variedades.get(tipoVar).beneficio();
 	}
+	public static Double getPorcentajeCafeVar(Integer tipoCafe, Integer tipoVar) {
+		String nomCafe= getCafe(tipoCafe);
+		return variedades.get(tipoVar).composicion.get(nomCafe);
+	}
+	
+//	// cantidad
+//	public static List<Cafe> getCafes() {
+//		return cafe;
+//	}
+//
+//	public static List<VarCafe> getVariedades() {
+//		return variedades;
+//	}
 private static void testLectura() {
 	iniDatos("ficheros/ejercicios/Ejercicio1DatosEntrada1.txt");
 	System.out.println("Estas son los tipos de cafe"+ cafe);

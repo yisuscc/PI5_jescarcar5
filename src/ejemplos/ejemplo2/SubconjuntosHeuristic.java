@@ -10,7 +10,7 @@ public class SubconjuntosHeuristic {
 	
 	// Se explica en practicas.
 	public static Double heuristic(SubconjuntosVertex v1, Predicate<SubconjuntosVertex> goal, SubconjuntosVertex v2) {
-		return v1.remaining().isEmpty()? 0.: 
+		return v1.remaining().isEmpty()? 0.:  // 
 			IntStream.range(v1.index(), DatosSubconjuntos.getNumSubconjuntos())
 			.filter(i -> !List2.intersection(v1.remaining(), 
 					DatosSubconjuntos.getElementos(i)).isEmpty())

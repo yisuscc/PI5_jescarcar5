@@ -16,7 +16,7 @@ public class DatosEjercicio2 {
 //Max_Centros = 1
 	//{1,2,3,4}:10.0:0
 	//{1,4}:3.0:0
-public static record Curso(Set<Integer> tematica, Double matricula, Integer centro) {
+public static record Curso(Set<Integer> tematica, Double precio, Integer centro) {
 		public static Curso create(String linea) {
 			String [] datos = linea.split(":");
 			Set<Integer> cur = new HashSet<>();
@@ -50,8 +50,9 @@ public static record Curso(Set<Integer> tematica, Double matricula, Integer cent
 			setTemas.addAll(aux.tematica());
 		}
 		cursos = temp;
-		
-		tematicas = ;
+		List<Integer> lsAux = List2.ofCollection(setTemas);
+		lsAux.sort(Comparator.naturalOrder());
+		tematicas = lsAux;
 	}
 	public static Integer getMaxCentros() {
 		return maxCentros;
@@ -62,8 +63,16 @@ public static record Curso(Set<Integer> tematica, Double matricula, Integer cent
 	public static Integer getNumCursos() {
 		return cursos.size();
 	}
-	public static Set<Integer>
-	public static 
+	public static Set<Integer>getTematicasCursos(Integer i){
+		return cursos.get(i).tematica();
+	}
+	public static  Double getPrecioCurso(Integer i) {
+		return cursos.get(i).precio();
+		
+	}
+	public static Integer  getCentroCurso(Integer i) {
+	return cursos.get(i).centro();
+	}
 	private static void test() {
 		iniDatos("ficheros/ejercicios/Ejercicio2DatosEntrada1.txt");
 		System.out.println("el maximo de centros es: " + maxCentros);

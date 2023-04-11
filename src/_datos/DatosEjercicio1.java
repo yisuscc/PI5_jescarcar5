@@ -8,15 +8,15 @@ import _datos.DatosEjercicio1.Cafe;
 import us.lsi.common.Files2;
 
 public class DatosEjercicio1 {
-// un tipo  variedad cafe y otro tipo cafe
+	// un tipo  variedad cafe y otro tipo cafe
 	public static record Cafe( String nombre, Integer peso) {
 
 		public static Cafe create(String linea) {
-		String[] datos = linea.split(":");//C01: kgdisponibles=35;
-		String nom = datos[0].trim();
-		String aux = datos[1].trim().replace("kgdisponibles=", " ").replace(';', ' ').trim();
-		Integer peso = Integer.valueOf(aux);
-		return new Cafe(nom, peso);
+			String[] datos = linea.split(":");//C01: kgdisponibles=35;
+			String nom = datos[0].trim();
+			String aux = datos[1].trim().replace("kgdisponibles=", " ").replace(';', ' ').trim();
+			Integer peso = Integer.valueOf(aux);
+			return new Cafe(nom, peso);
 		}
 	}
 
@@ -35,51 +35,56 @@ public class DatosEjercicio1 {
 			for(String cYv: claveYValorSucio) {
 				//(C01:0.5)
 				String [] claveYvalor = cYv.replace("(", "").replace(")", "").trim().split(":");
-			 String clave = claveYvalor[0].trim();
-			 Double valor = Double.valueOf(claveYvalor[1].trim());
-			comp.put(clave, valor);
+				String clave = claveYvalor[0].trim();
+				Double valor = Double.valueOf(claveYvalor[1].trim());
+				comp.put(clave, valor);
 			}
 			return new VarCafe( nom, ben, comp);
 		}
 	}
-	private static List<Cafe> cafe;
+	private static List<Cafe> cafes;
 	private static List<VarCafe> variedades;
 	public static void iniDatos(String fichero) {
-		
+
 		List<String> ls =  Files2.linesFromFile(fichero);
-		
+
 		//el index de café lo podemos omitir ya que empieza siempre en cero
 		Integer indexVariedades = ls.indexOf("// VARIEDADES");
 		Integer fin = ls.size();
 		List<String> lsCafe = List.copyOf(ls.subList(1, indexVariedades)); 
 		List<String> lsVariedad = List.copyOf(ls.subList(indexVariedades+1, fin));
-		cafe = lsCafe.stream().map(s-> Cafe.create(s)).toList();
+		cafes = lsCafe.stream().map(s-> Cafe.create(s)).toList();
 		variedades = lsVariedad.stream().map(s-> VarCafe.create(s)).toList();
-		
+
+	}
+	public static List<Cafe> getCafes(){
+		return cafes;
 	}
 
-public static Cafe getCafeNom(String nom) {
-	return cafe.stream().filter(c->c.nombre().equals(nom)).findFirst().get();
-}
+	public static Cafe getCafeNom(String nom) {
+		return cafes.stream().filter(c->c.nombre().equals(nom)).findFirst().get();
+	}
 	public static String getCafe(Integer index) {
-		return cafe.get(index).nombre();
+		return cafes.get(index).nombre();
 	}
-
+public static List<VarCafe> getVariCafe(){
+	return variedades;
+}
 	public static String getVarCafe(Integer index) {
 		return variedades.get(index).nombre();
 	}
 
 	// nint tipos cafe
 	public static Integer getTiposCafe() { //n
-		return cafe.size();
+		return cafes.size();
 	}
 
 	// int var cafe
-	public static Integer getVarCafe() { // m
+	public static Integer getNumVarCafe() { // m
 		return variedades.size();
 	}
 	public static Integer getCafeDisp(Integer tipoCafe) {//entra j
-		return cafe.get(tipoCafe).peso();
+		return cafes.get(tipoCafe).peso();
 	}
 	public static Double getBeneficioVar(Integer tipoVar) {// entra i
 		return variedades.get(tipoVar).beneficio();
@@ -88,25 +93,25 @@ public static Cafe getCafeNom(String nom) {
 		String nomCafe= getCafe(tipoCafe);
 		return variedades.get(tipoVar).composicion.get(nomCafe);
 	}
-	
-//	// cantidad
-//	public static List<Cafe> getCafes() {
-//		return cafe;
-//	}
-//
-//	public static List<VarCafe> getVariedades() {
-//		return variedades;
-//	}
-private static void testLectura() {
-	iniDatos("ficheros/ejercicios/Ejercicio1DatosEntrada1.txt");
-	System.out.println("Estas son los tipos de cafe"+ cafe);
-	System.out.println("Estas son las variedades"+ variedades);
-	
-}
+
+	//	// cantidad
+	//	public static List<Cafe> getCafes() {
+	//		return cafe;
+	//	}
+	//
+	//	public static List<VarCafe> getVariedades() {
+	//		return variedades;
+	//	}
+	private static void testLectura() {
+		iniDatos("ficheros/ejercicios/Ejercicio1DatosEntrada1.txt");
+		System.out.println("Estas son los tipos de cafe"+ cafes);
+		System.out.println("Estas son las variedades"+ variedades);
+
+	}
 	public static void main(String[] args) {
 		testLectura();
 
-		
+
 
 	}
 

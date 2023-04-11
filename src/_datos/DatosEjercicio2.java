@@ -60,8 +60,20 @@ public static record Curso(Set<Integer> tematica, Double precio, Integer centro)
 	public static List<Curso> getCursos(){// se puede eliminar
 		return cursos;
 	}
+	public static List<Integer> getTematicas(){
+		return tematicas;
+	}
 	public static Integer getNumCursos() {
 		return cursos.size();
+	}
+	public static Integer getNumTematicas() {
+		return tematicas.size();
+	}
+	public static Integer getNumCentros() {
+		// cuidao con los overflows 
+		Long lo = cursos.stream().map(l->l.centro()).distinct().count();
+		
+	 return lo.intValue() ;
 	}
 	public static Set<Integer>getTematicasCursos(Integer i){
 		return cursos.get(i).tematica();

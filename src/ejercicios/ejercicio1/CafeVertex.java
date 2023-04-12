@@ -3,15 +3,12 @@ package ejercicios.ejercicio1;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.IntStream;
-
 import _datos.DatosEjercicio1;
-import _datos.DatosMulticonjunto;
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
 
 public record CafeVertex(Integer index, List<Integer> remaining)implements VirtualVertex<CafeVertex, CafeEdge, Integer> {
-	//el of
+	//consisdero que el remaining debería ser una lista de double
 	public static CafeVertex of(Integer index, List<Integer> remaining) {
 		return new CafeVertex(index, remaining);
 	}
@@ -37,7 +34,7 @@ public record CafeVertex(Integer index, List<Integer> remaining)implements Virtu
 		 * mayores o iguale que 0 
 		 * 
 		 */
-		return goal();
+		return v-> todosMayorIgualQueCero(v.remaining());
 	}
 
 	private static Boolean todosMayorIgualQueCero(List<Integer> ls) {
@@ -67,25 +64,35 @@ public record CafeVertex(Integer index, List<Integer> remaining)implements Virtu
 	}
 	@Override
 	public List<Integer> actions() {
-		// TODO Auto-generated method stub
+	
 		List<Integer> alternativas = List2.empty();
-		if(index<DatosEjercicio1.getNumVarCafe()) {
+		if(index<DatosEjercicio1.getNumVarCafe()) {//TODO No se si le hace falta algo más
+			alternativas = List2.rangeList(0, limiteVarCafe(index, remaining)+1);
 
 		}
 
 		return alternativas;
 	}
-
+private static  List<Integer> decrementor(List<Integer> rem, Integer a, Integer ind){
+	List<Integer> ls = List2.copy(rem);
+	List<Integer> res = List2.empty();
+	for(int p = 0; p<rem.size();p++) {
+		Double r =ls.get(p)-a* DatosEjercicio1.getPorcentajeCafeVar(p, ind) ;
+		res.add(p, r.intValue());
+	}
+	return ls;
+}
 	@Override
 	public CafeVertex neighbor(Integer a) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+		return of(index+1,decrementor(remaining, a, index));
 	}
 
 	@Override
 	public CafeEdge edge(Integer a) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return CafeEdge.of(this, neighbor(a),a);
 	}
 
 	//	@Override

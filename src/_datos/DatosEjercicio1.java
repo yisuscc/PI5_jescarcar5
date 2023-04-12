@@ -91,7 +91,7 @@ public static List<VarCafe> getVariCafe(){
 	}
 	public static Double getPorcentajeCafeVar(Integer tipoCafe, Integer tipoVar) {
 		String nomCafe= getCafe(tipoCafe);
-		return variedades.get(tipoVar).composicion.get(nomCafe);
+		return variedades.get(tipoVar).composicion.getOrDefault(nomCafe,0.0);
 	}
 
 	//	// cantidad

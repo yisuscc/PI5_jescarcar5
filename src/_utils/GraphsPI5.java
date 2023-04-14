@@ -10,6 +10,9 @@ import ejemplos.ejemplo2.SubconjuntosHeuristic;
 import ejemplos.ejemplo2.SubconjuntosVertex;
 import ejemplos.ejemplo3.AlumnosEdge;
 import ejemplos.ejemplo3.AlumnosVertex;
+import ejercicios.ejercicio1.CafeEdge;
+import ejercicios.ejercicio1.CafeHeuristic;
+import ejercicios.ejercicio1.CafeVertex;
 import us.lsi.graphs.virtual.EGraph;
 import us.lsi.graphs.virtual.EGraph.Type;
 import us.lsi.path.EGraphPath.PathType;
@@ -64,5 +67,19 @@ public class GraphsPI5 {
 		// TODO Implementarlo de forma similar a los greedy de los ejemplos 1 y 2
 		return null;
 	}
+	//Ejercicio 1 . Grafo no greedy 
+	public static EGraph<CafeVertex, CafeEdge> coffeeGraph(CafeVertex v_inicial, Predicate<CafeVertex> es_terminal){
+		
+		return  EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Max).
+				goalHasSolution(CafeVertex.goalHasSolution()).heuristic(CafeHeuristic::heuristic).build();
+	}
+	
+	//Ejercicio 1: Grafo Greedy
+	public static EGraph<CafeVertex, CafeEdge> greedyCoffeeGraph(CafeVertex v_inicial, Predicate<CafeVertex> es_terminal){
+	
+		return  EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Max).
+				greedyEdge(CafeVertex::greedyEdge).heuristic(CafeHeuristic::heuristic).build();
+	}
+	
 	
 }

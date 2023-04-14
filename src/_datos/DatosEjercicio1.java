@@ -70,8 +70,11 @@ public class DatosEjercicio1 {
 public static List<VarCafe> getVariCafe(){
 	return variedades;
 }
-	public static String getVarCafe(Integer index) {
+	public static String getNombreVarCafe(Integer index) {
 		return variedades.get(index).nombre();
+	}
+	public static VarCafe getVarCafe(Integer index) { // no es necesario
+		return variedades.get(index);
 	}
 
 	// nint tipos cafe

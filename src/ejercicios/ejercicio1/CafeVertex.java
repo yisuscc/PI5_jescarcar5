@@ -3,7 +3,11 @@ package ejercicios.ejercicio1;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 import _datos.DatosEjercicio1;
+import _datos.DatosMulticonjunto;
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
 
@@ -93,6 +97,25 @@ private static  List<Integer> decrementor(List<Integer> rem, Integer a, Integer 
 	public CafeEdge edge(Integer a) {
 		
 		return CafeEdge.of(this, neighbor(a),a);
+	}
+	//TODO GREEDY EDGE
+	public CafeEdge greedyEdge() {
+		//return existeMejorArista()? edge(0): edge(remaining/DatosMulticonjunto.getElemento(index));
+		return existeMejorArista()?edge(0):edge(limiteVarCafe(index, remaining));
+	}
+	public Boolean existeMejorArista() {
+/*
+ * 	Integer max = IntStream.range(index+1, DatosMulticonjunto.getNumElementos())
+				.map(i -> DatosMulticonjunto.getElemento(i))
+				.filter(e -> remaining%e==0).max().orElse(0);
+		return max > DatosMulticonjunto.getElemento(index);
+ */
+		Double max = Stream.iterate(0, i-> i<DatosEjercicio1.getNumVarCafe(), i-> i+1).
+				mapToDouble(i->DatosEjercicio1.getBeneficioVar(i) * limiteVarCafe(i, remaining)).max().orElse(0);
+		
+			return max >(DatosEjercicio1.getBeneficioVar(index)* limiteVarCafe(index, remaining));
+
+		
 	}
 
 	//	@Override

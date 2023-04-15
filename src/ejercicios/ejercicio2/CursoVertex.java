@@ -80,25 +80,10 @@ public record CursoVertex(Integer index, Set<Integer> remaining,Set<Integer> cen
 		Set<Integer> rem = Set2.difference(remaining, DatosEjercicio2.getTematicasCursos(index));
 		Set<Integer> cent = Set2.copy(centers);
 		cent.add(DatosEjercicio2.getCentroCurso(index));
-		/*
-		 *Set<Integer> rest = Set2.difference(remaining, DatosSubconjuntos.getElementos(index));
-		return rest.equals(remaining)? edge(0): edge(1);
-		 */
 		Boolean cond = !rem.equals(remaining) && cent.size()<= DatosEjercicio2.getMaxCentros();
 		return cond?edge(1):edge(0);
 	}
 
-	//	@Override
-	//	public boolean equals(Object obj) {
-	//		// TODO Auto-generated method stub
-	//		return false;
-	//	}
-	//
-	//	@Override
-	//	public int hashCode() {
-	//		// TODO Auto-generated method stub
-	//		return 0;
-	//	}
 
 	@Override
 	public String toString() {

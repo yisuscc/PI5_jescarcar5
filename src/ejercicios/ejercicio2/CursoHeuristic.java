@@ -6,6 +6,6 @@ public class CursoHeuristic {
 
 	public static Double heuristic(CursoVertex v1, Predicate<CursoVertex> goal, CursoVertex v2) {
 		//TODO
-		return null;
+		return 0.;
 	}
 }

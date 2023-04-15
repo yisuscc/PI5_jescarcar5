@@ -10,7 +10,17 @@ import ejercicios.ejercicio1.CafeEdge;
 import ejercicios.ejercicio1.CafeVertex;
 import us.lsi.common.List2;
 
-public class SolucionCafe {
+public class SolucionCafe implements Comparable<SolucionCafe>{
+	public static SolucionCafe of(List<Integer> ls) {
+		return new SolucionCafe(ls);
+	}
+	public static SolucionCafe of(GraphPath<CafeVertex, CafeEdge> path ) {
+
+		List<Integer> ls = path.getEdgeList().stream().map(e->e.action()).toList();
+		SolucionCafe res = of(ls);
+		res.path =ls;
+		return  res ;
+	}
 	
 	private Double beneficio;
 	private List<Integer>  solucion;
@@ -31,17 +41,9 @@ private  SolucionCafe(List<Integer> values) {
 	this.solucion = ls;
 }
 	
-public SolucionCafe of(List<Integer> ls) {
-	return new SolucionCafe(ls);
-}
 
-public SolucionCafe of(GraphPath<CafeVertex, CafeEdge> path ) {
 
-	List<Integer> ls = path.getEdgeList().stream().map(e->e.action()).toList();
-	SolucionCafe res = of(ls);
-	res.path =ls;
-	return  res ;
-}
+
 @Override
 public String toString() { //PI4
 	String aux = " Variedades seleccionadas: \r\n ";
@@ -56,8 +58,11 @@ public String toString() { //PI4
 
 	}
 	aux += "Beneficio: " +beneficio;
-//	return aux;
 	return path==null? aux: String.format("%s\nPath de la solucion: %s", aux, path);
+}
+@Override
+public int compareTo(SolucionCafe s) {
+	return beneficio.compareTo(s.beneficio);
 }
 
 }

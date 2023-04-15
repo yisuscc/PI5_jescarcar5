@@ -61,7 +61,7 @@ public record CafeVertex(Integer index, List<Integer> remaining)implements Virtu
 		Map<String, Double> comp  = DatosEjercicio1.getVariCafe().get(index).composicion();// si el map fuese initeger integer
 		//seria mas sencillo
 		Double min= comp.entrySet().stream().
-				mapToDouble(es->rem.get(Integer.valueOf(es.getKey().replace('C',' '))-1)/es.getValue()).
+				mapToDouble(es->rem.get(Integer.valueOf(es.getKey().replace('C',' ').trim())-1)/es.getValue()).
 				min().orElse(0);
 
 		return min.intValue();

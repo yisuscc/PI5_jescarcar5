@@ -14,7 +14,7 @@ import us.lsi.common.Set2;
 import us.lsi.graphs.virtual.VirtualVertex;
 
 public record CursoVertex(Integer index, Set<Integer> remaining,Set<Integer> centers)implements VirtualVertex<CursoVertex, CursoEdge, Integer> {
-	//TODO Cambio los centros se añaden en lugar de quitarlos
+
 	
 	//of
 	public static CursoVertex of(Integer i ,Set<Integer> r,Set<Integer> c) {
@@ -44,7 +44,7 @@ public record CursoVertex(Integer index, Set<Integer> remaining,Set<Integer> cen
 			Integer cntr = cAux.centro();
 			Set<Integer>tmtcs = cAux.tematica();
 			Set<Integer> rmnng = Set2.copy(remaining);
-			Set<Integer> cntrs = Set2.copy(centers);
+			Set<Integer> cntrs = Set2.copy(centers());
 			Set<Integer> rest = Set2.difference(rmnng,tmtcs);
 			cntrs.add(cntr);
 			if(!rest.equals(rmnng) && cntrs.size()<=DatosEjercicio2.getMaxCentros()) {
@@ -61,7 +61,7 @@ public record CursoVertex(Integer index, Set<Integer> remaining,Set<Integer> cen
 	public CursoVertex neighbor(Integer a) {
 		// Caso si a es igual a 1 caso si a es igual a cero
 		Set<Integer>rem = Set2.copy(remaining());
-		Set<Integer> cent = Set2.copy(centers);
+		Set<Integer> cent = Set2.copy(centers());
 		if(a!= 0) {
 			rem =  Set2.difference(remaining, DatosEjercicio2.getTematicasCursos(index));
 			cent.remove(DatosEjercicio2.getCentroCurso(index));
@@ -78,7 +78,7 @@ public record CursoVertex(Integer index, Set<Integer> remaining,Set<Integer> cen
 	}
 	public CursoEdge greedyEdge() {
 		Set<Integer> rem = Set2.difference(remaining, DatosEjercicio2.getTematicasCursos(index));
-		Set<Integer> cent = Set2.copy(centers);
+		Set<Integer> cent = Set2.copy(centers());
 		cent.add(DatosEjercicio2.getCentroCurso(index));
 		Boolean cond = !rem.equals(remaining) && cent.size()<= DatosEjercicio2.getMaxCentros();
 		return cond?edge(1):edge(0);

@@ -19,13 +19,13 @@ public class TestEjercicio2 {
 			var gp = TestsPI5.testGreedy(GraphsPI5.greedyCursoGraph(v_inicial, es_terminal));
 			TestsPI5.toConsole("Voraz", gp, SolucionCursos::of);
 			
-			var path = TestsPI5.testAStar(GraphsPI5.cursoGraph(v_inicial, es_terminal),gp);
-			TestsPI5.toConsole("A*", path, SolucionCursos::of);
-			
-			path = TestsPI5.testPDR(GraphsPI5.cursoGraph(v_inicial, es_terminal),gp);
-			TestsPI5.toConsole("PDR", path, SolucionCursos::of);
-			
-			path = TestsPI5.testBT(GraphsPI5.cursoGraph(v_inicial, es_terminal),gp);
+		var path = TestsPI5.testAStar(GraphsPI5.cursoGraph(v_inicial, es_terminal),gp);
+		TestsPI5.toConsole("A*", path, SolucionCursos::of);
+		
+		path = TestsPI5.testPDR(GraphsPI5.cursoGraph(v_inicial, es_terminal),gp);
+		TestsPI5.toConsole("PDR", path, SolucionCursos::of);
+		
+		path = TestsPI5.testBT(GraphsPI5.cursoGraph(v_inicial, es_terminal),gp);
 			TestsPI5.toConsole("BT", path, SolucionCursos::of);
 			
 			

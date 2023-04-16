@@ -44,9 +44,9 @@ public record CursoVertex(Integer index, Set<Integer> remaining,Set<Integer> cen
 			Integer cntr = cAux.centro();
 			Set<Integer>tmtcs = cAux.tematica();
 			Set<Integer> rmnng = Set2.copy(remaining);
-			Set<Integer> cntrs = Set2.copy(centers());
+			Set<Integer> cntrs = Set2.union(centers, Set2.of(cntr));
 			Set<Integer> rest = Set2.difference(rmnng,tmtcs);
-			cntrs.add(cntr);
+			
 			if(!rest.equals(rmnng) && cntrs.size()<=DatosEjercicio2.getMaxCentros()) {
 				alternativas = List2.of(0,1);
 			}else {
@@ -64,7 +64,7 @@ public record CursoVertex(Integer index, Set<Integer> remaining,Set<Integer> cen
 		Set<Integer> cent = Set2.copy(centers());
 		if(a!= 0) {
 			rem =  Set2.difference(remaining, DatosEjercicio2.getTematicasCursos(index));
-			cent.remove(DatosEjercicio2.getCentroCurso(index));
+			cent.add(DatosEjercicio2.getCentroCurso(index));
 		}
 		CursoVertex res  = CursoVertex.of(index+1, rem, cent); 
 
@@ -78,8 +78,7 @@ public record CursoVertex(Integer index, Set<Integer> remaining,Set<Integer> cen
 	}
 	public CursoEdge greedyEdge() {
 		Set<Integer> rem = Set2.difference(remaining, DatosEjercicio2.getTematicasCursos(index));
-		Set<Integer> cent = Set2.copy(centers());
-		cent.add(DatosEjercicio2.getCentroCurso(index));
+		Set<Integer> cent = Set2.union(centers(), Set2.of(DatosEjercicio2.getCentroCurso(index)));
 		Boolean cond = !rem.equals(remaining) && cent.size()<= DatosEjercicio2.getMaxCentros();
 		return cond?edge(1):edge(0);
 	}

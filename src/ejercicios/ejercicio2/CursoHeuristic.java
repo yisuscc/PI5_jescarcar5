@@ -1,7 +1,7 @@
 package ejercicios.ejercicio2;
 
 import java.util.Set;
-import java.util.function.Function;
+
 import java.util.function.Predicate;
 import java.util.function.ToDoubleFunction;
 import java.util.stream.IntStream;
@@ -12,7 +12,7 @@ import us.lsi.common.Set2;
 public class CursoHeuristic {
 
 	public static Double heuristic(CursoVertex v1, Predicate<CursoVertex> goal, CursoVertex v2) {
-		//TODO
+		
 		/*		return v1.remaining().isEmpty()? 0.:  // 
 			IntStream.range(v1.index(), DatosSubconjuntos.getNumSubconjuntos())
 			.filter(i -> !List2.intersection(v1.remaining(), 
@@ -36,10 +36,11 @@ public class CursoHeuristic {
 		
 		//crea la secuencia de nnumeros 
 		
-		// Uso stream en lugar de int stream porque si no 
+	
 		
 		 return v1.remaining().isEmpty()? 0.:IntStream.range(v1.index(), DatosEjercicio2.getNumCursos()).
 				 boxed().filter(prdct).
 				 mapToDouble((ToDoubleFunction<? super Integer>) funk).min().orElse(1000);
+
 	}
 }

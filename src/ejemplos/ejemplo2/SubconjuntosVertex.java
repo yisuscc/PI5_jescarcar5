@@ -39,7 +39,7 @@ public static Predicate<SubconjuntosVertex> goalHasSolution(){
 		
 		if(index<DatosSubconjuntos.getNumSubconjuntos()) {
 			if(remaining().isEmpty()) {
-				
+				alternativas = List2.of(0);
 			}else {
 				Set<Integer>rest = Set2.difference(remaining, DatosSubconjuntos.getElementos(index));
 				if(rest.equals(remaining)) {

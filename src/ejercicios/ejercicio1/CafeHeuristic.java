@@ -33,9 +33,11 @@ public class CafeHeuristic {
 	public static Double heuristic(CafeVertex v1, Predicate<CafeVertex> goal, CafeVertex v2) {
 		//TODO
 		Double res = 0.;
-//		if(v1.remaining()) {
-//			
-//		}
+//		// 1 quito las variedades que  con la cantidad deisponible no pueda crear al menos un Kg
+		// 2 lloro 
+		// 3 de las variedades restantes calculo cuanto puedo coger 
+		// 4 me quedo con el maximo y si no cero patatero 
+		
 		return res;
 	}
 	

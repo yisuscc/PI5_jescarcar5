@@ -1,8 +1,11 @@
 package ejercicios.ejercicio1;
 
 import java.util.function.Predicate;
+import java.util.function.ToDoubleFunction;
 import java.util.stream.IntStream;
 
+import _datos.DatosEjercicio1;
+import _datos.DatosEjercicio2;
 import us.lsi.common.List2;
 
 
@@ -32,13 +35,18 @@ public class CafeHeuristic {
 	
 	public static Double heuristic(CafeVertex v1, Predicate<CafeVertex> goal, CafeVertex v2) {
 		//TODO
-		Double res = 0.;
+		
 //		// 1 quito las variedades que  con la cantidad deisponible no pueda crear al menos un Kg
+		ToDoubleFunction<Integer> funk = i-> {
+			return CafeVertex.limiteVarCafe(i,v1.remaining())*DatosEjercicio1.getBeneficioVar(i);
+		};
 		// 2 lloro 
-		// 3 de las variedades restantes calculo cuanto puedo coger 
+		// 3 de las variedades restantes calculo cuanto puedo coger  y lo multiplico por el beneficio
+		
 		// 4 me quedo con el maximo y si no cero patatero 
 		
-		return res;
+		return IntStream.range(0, DatosEjercicio1.getNumVarCafe()).
+				boxed().mapToDouble(funk).max().orElse(0);
 	}
 	
 	

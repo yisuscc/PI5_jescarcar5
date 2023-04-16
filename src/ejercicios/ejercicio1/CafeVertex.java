@@ -51,7 +51,7 @@ public record CafeVertex(Integer index, List<Integer> remaining)implements Virtu
 		}
 		return res;
 	}
-	private static  Integer limiteVarCafe(Integer index, List<Integer> rem) {
+	public static  Integer limiteVarCafe(Integer index, List<Integer> rem) {
 		/*Dados un remaining y un index devuelve 
 		 * cual es el maxímo numeno de Kilos que se puede coger 
 		 * de cada variedad
@@ -101,7 +101,8 @@ private static  List<Integer> decrementor(List<Integer> rem, Integer a, Integer 
 	//TODO GREEDY EDGE
 	public CafeEdge greedyEdge() {
 		//return existeMejorArista()? edge(0): edge(remaining/DatosMulticonjunto.getElemento(index));
-		return existeMejorArista()?edge(0):edge(limiteVarCafe(index, remaining));
+		//return existeMejorArista()?edge(0):edge(limiteVarCafe(index, remaining));
+		return edge(limiteVarCafe(index, remaining));
 	}
 	public Boolean existeMejorArista() {
 /*

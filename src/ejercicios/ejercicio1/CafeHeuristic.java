@@ -1,5 +1,6 @@
 package ejercicios.ejercicio1;
 
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.ToDoubleFunction;
 import java.util.stream.IntStream;
@@ -32,8 +33,11 @@ public class CafeHeuristic {
 		return res; 
 	}
   */
-	
 	public static Double heuristic(CafeVertex v1, Predicate<CafeVertex> goal, CafeVertex v2) {
+		return pesoVoraz(v1);
+	}
+	
+	public static Double heuristicV2(CafeVertex v1, Predicate<CafeVertex> goal, CafeVertex v2) {
 		//TODO
 		
 //		// 1 quito las variedades que  con la cantidad deisponible no pueda crear al menos un Kg
@@ -48,7 +52,20 @@ public class CafeHeuristic {
 		return IntStream.range(0, DatosEjercicio1.getNumVarCafe()).
 				boxed().mapToDouble(funk).max().orElse(0);
 	}
-	
+	public static  Double pesoVoraz( CafeVertex v1) {
+		Double peso = 0.;
+		Integer i = v1.index();
+		
+		List<Integer> rem = v1.remaining();
+		while(i< DatosEjercicio1.getNumVarCafe()) {
+			Integer a = CafeVertex.limiteVarCafe(i, rem);
+			rem = CafeVertex.decrementor(rem, a, i);
+			peso += a*DatosEjercicio1.getBeneficioVar(i);
+			i++;
+			
+		}
+		return peso;
+	}
 	
 	
 	public static void main(String[] args) {

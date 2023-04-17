@@ -4,8 +4,4 @@ Algoritmo de Prtogramación dinamica resuelve un probleam duvidendolo en subprob
 Algoritmo de backtracking: explora todas las posibles soluciones , retrocediendo cuando una solución parcial no puede llevar a una solución final.
 
 
-Ejemplo 2:
-  Propiedades compartidas: los subconjuntos y sus pesos. 
-  Propiedades individuales: index (entero).
-  							remaining (set integer).
  

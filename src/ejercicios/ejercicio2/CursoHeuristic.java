@@ -40,7 +40,8 @@ public class CursoHeuristic {
 		
 		 return v1.remaining().isEmpty()? 0.:IntStream.range(v1.index(), DatosEjercicio2.getNumCursos()).
 				 boxed().filter(prdct).
-				 mapToDouble((ToDoubleFunction<? super Integer>) funk).min().orElse(1000);
+				 mapToDouble((ToDoubleFunction<? super Integer>) funk ).min().orElse(1000);
+
 
 	}
 }

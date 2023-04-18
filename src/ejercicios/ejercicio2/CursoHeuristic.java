@@ -10,8 +10,40 @@ import _datos.DatosEjercicio2;
 import us.lsi.common.Set2;
 
 public class CursoHeuristic {
-
+	
+	
 	public static Double heuristic(CursoVertex v1, Predicate<CursoVertex> goal, CursoVertex v2) {
+		// version voraz de la heuristica 
+		return pesoVoraz(v1);
+		
+	}
+	private static Double pesoVoraz(CursoVertex v1) {
+		/*
+		 * 	Set<Integer> rem = Set2.difference(remaining, DatosEjercicio2.getTematicasCursos(index));
+		Set<Integer> cent = Set2.union(centers(), Set2.of(DatosEjercicio2.getCentroCurso(index)));
+		Boolean cond = !rem.equals(remaining) && cent.size()<= DatosEjercicio2.getMaxCentros();
+		return cond?edge(1):edge(0);
+		 */
+		Double peso = 0.;
+		Integer i = v1.index();
+		Set<Integer> rmnng = Set2.copy(v1.remaining());
+		Set<Integer> cntrs =Set2.copy(v1.centers()); 
+		while(i<DatosEjercicio2.getNumCursos() && cntrs.size()<=DatosEjercicio2.getMaxCentros()) {
+			Set<Integer> rem = Set2.difference(rmnng, DatosEjercicio2.getTematicasCursos(i));
+			Set<Integer> cent = Set2.union(cntrs, Set2.of(DatosEjercicio2.getCentroCurso(i)));
+			Boolean cond = !rem.equals(rmnng) && cent.size()<= DatosEjercicio2.getMaxCentros();
+			if(cond) {
+				rmnng = rem;
+				cntrs = cent;
+				peso += DatosEjercicio2.getPrecioCurso(i);
+			}
+			i++;
+		}
+		
+		return peso;
+	}
+	public static Double heuristicV2(CursoVertex v1, Predicate<CursoVertex> goal, CursoVertex v2) {
+		//Da muchos problemas, pero la dejo por si acaso 
 		
 		/*		return v1.remaining().isEmpty()? 0.:  // 
 			IntStream.range(v1.index(), DatosSubconjuntos.getNumSubconjuntos())

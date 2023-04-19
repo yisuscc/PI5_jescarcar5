@@ -84,7 +84,7 @@ public static  List<Integer> decrementor(List<Integer> rem, Integer a, Integer i
 		Double r =ls.get(p)-a* DatosEjercicio1.getPorcentajeCafeVar(p, ind) ;
 		res.add(p, r.intValue());
 	}
-	return ls;
+	return res;
 }
 	@Override
 	public CafeVertex neighbor(Integer a) {
@@ -98,19 +98,14 @@ public static  List<Integer> decrementor(List<Integer> rem, Integer a, Integer i
 		
 		return CafeEdge.of(this, neighbor(a),a);
 	}
-	//TODO GREEDY EDGE
+
 	public CafeEdge greedyEdge() {
-		//return existeMejorArista()? edge(0): edge(remaining/DatosMulticonjunto.getElemento(index));
+	
 		//return existeMejorArista()?edge(0):edge(limiteVarCafe(index, remaining));
 		return edge(limiteVarCafe(index, remaining));
 	}
 	public Boolean existeMejorArista() {
-/*
- * 	Integer max = IntStream.range(index+1, DatosMulticonjunto.getNumElementos())
-				.map(i -> DatosMulticonjunto.getElemento(i))
-				.filter(e -> remaining%e==0).max().orElse(0);
-		return max > DatosMulticonjunto.getElemento(index);
- */
+
 		Double max = Stream.iterate(0, i-> i<DatosEjercicio1.getNumVarCafe(), i-> i+1).
 				mapToDouble(i->DatosEjercicio1.getBeneficioVar(i) * limiteVarCafe(i, remaining)).max().orElse(0);
 		
@@ -119,22 +114,12 @@ public static  List<Integer> decrementor(List<Integer> rem, Integer a, Integer i
 		
 	}
 
-	//	@Override
-	//	public boolean equals(Object obj) {
-	//		// TODO Auto-generated method stub
-	//		return false;
-	//	}
-	//
-	//	@Override
-	//	public int hashCode() {
-	//		// TODO Auto-generated method stub
-	//		return 0;
-	//	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+//	@Override
+//	public String toString() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

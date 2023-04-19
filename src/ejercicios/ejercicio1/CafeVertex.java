@@ -78,6 +78,7 @@ public record CafeVertex(Integer index, List<Integer> remaining)implements Virtu
 		return alternativas;
 	}
 public static  List<Integer> decrementor(List<Integer> rem, Integer a, Integer ind){
+	// la version con stream está en CafeProblem
 	List<Integer> ls = List2.copy(rem);
 	List<Integer> res = List2.empty();
 	for(int p = 0; p<rem.size();p++) {

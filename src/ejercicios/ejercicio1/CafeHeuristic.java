@@ -38,7 +38,7 @@ public class CafeHeuristic {
 	}
 	
 	public static Double heuristicV2(CafeVertex v1, Predicate<CafeVertex> goal, CafeVertex v2) {
-		//TODO
+		
 		
 //		// 1 quito las variedades que  con la cantidad deisponible no pueda crear al menos un Kg
 		ToDoubleFunction<Integer> funk = i-> {

@@ -7,22 +7,23 @@ import _datos.DatosEjercicio1;
 import us.lsi.common.List2;
 
 public record CafeProblem(Integer index, List<Integer> cafeRestante) {
-//TODO OF
+
 	public static CafeProblem of(Integer index, List<Integer> cafeRestante) {
-		//TODO un exception checker
+		
 		return new CafeProblem(index, cafeRestante);
 	}
-	//TODO vecino
+	
 	public CafeProblem vecino(Integer a) {
-		return null;
+		
+		return of(index+1, decrementorMan(cafeRestante, a, index));
 	}
 	
-	//TODO GreedyAction
+	
 	public Integer greedyInteger() {
-		return null; 
+		return limiteVarCafeMan(index, cafeRestante); 
 	
 	}
-	//TODO acciones
+	
 	public List<Integer> acciones(){
 		List<Integer> alternativas = List2.empty();
 		if(index<DatosEjercicio1.getNumVarCafe()) {//TODO No se si le hace falta algo más
@@ -32,7 +33,7 @@ public record CafeProblem(Integer index, List<Integer> cafeRestante) {
 		return alternativas;
 	}
 	private static Integer limiteVarCafeMan(Integer index2, List<Integer> cafeRestante2) {
-		// TODO Auto-generated method stub
+		
 		List<Integer> rem2 = List2.copy(cafeRestante2);
 		Map<String, Double> comp  = DatosEjercicio1.getVariCafe().get(index2).composicion();// si el map fuese initeger integer
 		//seria mas sencillo
@@ -46,6 +47,8 @@ public record CafeProblem(Integer index, List<Integer> cafeRestante) {
 		// a diferencia del de cafe vertex este lo voy a hacer con stream
 		List<Integer> ls= List2.copy(cafeRestante2);
 		Integer in = -1;
-		List<Integer> res =  ls.stream().map(r->( r- a*DatosEjercicio1.getPorcentajeCafeVar(, in)) )
+		List<Integer> res =  ls.stream().map(r->( r- a*DatosEjercicio1.getPorcentajeCafeVar(in, ind)) ).map(r-> r.intValue()).toList();
+		return res; 
+
 	}
 }

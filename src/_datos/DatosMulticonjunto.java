@@ -7,16 +7,16 @@ import us.lsi.common.List2;
 import us.lsi.common.String2;
 
 public class DatosMulticonjunto {
-	
-	public static int SUMA;	
-	private static List<Integer> numeros; 
-	
+
+	public static int SUMA;
+	private static List<Integer> numeros;
+
 	public static void iniDatos2(String fichero) {
 		List<String> lineas = Files2.linesFromFile(fichero);
-		for(int i=0;i<lineas.size();i++) {
+		for (int i = 0; i < lineas.size(); i++) {
 			String[] v = lineas.get(i).split(":");
 			SUMA = Integer.parseInt(v[1].trim());
-			numeros = List2.parse(v[0], ",", Integer::parseInt);	
+			numeros = List2.parse(v[0], ",", Integer::parseInt);
 			toConsole();
 		}
 	}
@@ -24,32 +24,36 @@ public class DatosMulticonjunto {
 	public static void iniDatos(String fichero) {
 		String[] v = Files2.linesFromFile(fichero).get(0).split(":");
 		SUMA = Integer.parseInt(v[1].trim());
-		numeros = List2.parse(v[0], ",", Integer::parseInt);	
+		numeros = List2.parse(v[0], ",", Integer::parseInt);
 		toConsole();
 	}
-	
+
 	public static Integer getSuma() {
 		return SUMA;
 	}
+
 	public static Integer getNumElementos() {
 		return numeros.size();
 	}
+
 	public static Integer getElemento(Integer i) {
 		return numeros.get(i);
 	}
-	public static Integer getMultiplicidad(Integer i){
+
+	public static Integer getMultiplicidad(Integer i) {
 		return SUMA / numeros.get(i);
 	}
-	public static List<Integer> getListaNumeros(){
+
+	public static List<Integer> getListaNumeros() {
 		return numeros;
 	}
-	
+
 	public static void toConsole() {
-		String2.toConsole("Conjunto de Entrada: %s\nSuma objetivo: %d", numeros, SUMA);	
-	}	
-	
+		String2.toConsole("Conjunto de Entrada: %s\nSuma objetivo: %d", numeros, SUMA);
+	}
+
 	// Test de la lectura del fichero
 	public static void main(String[] args) {
 		iniDatos("ficheros/Ejemplo1DatosEntrada1.txt");
-	}	
+	}
 }

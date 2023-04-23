@@ -32,14 +32,15 @@ public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>
 	private static List<Integer> iniDays() {
 		return DatosEjercicio3.getInvestigadores().stream().map(i -> i.capacidad()).toList();
 	}
+
 // INItial
 	public static Ejer3Vertex initial() {
-		return of(0,iniDays(),iniDistribution());
+		return of(0, iniDays(), iniDistribution());
 	}
 
 	// goal
-	public static Predicate<Ejer3Vertex> goal(){
-		return v-> v.zIndex() == (DatosEjercicio3.getNumInvestigadores()* DatosEjercicio3.getNumTrabajos());
+	public static Predicate<Ejer3Vertex> goal() {
+		return v -> v.zIndex() == (DatosEjercicio3.getNumInvestigadores() * DatosEjercicio3.getNumTrabajos());
 	}
 	// TODO goalHasSolution
 

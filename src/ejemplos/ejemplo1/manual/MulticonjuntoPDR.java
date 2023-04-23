@@ -53,26 +53,26 @@ public class MulticonjuntoPDR {
 				mejorValor = acumulado;
 			}
 		} else {
-			// voy a analizar todas las posibles soluciones 
-			//(tomando distintas alternativas) desde mi problema inicial
+			// voy a analizar todas las posibles soluciones
+			// (tomando distintas alternativas) desde mi problema inicial
 			List<Spm> soluciones = List2.empty();
 			for (Integer action : prob.actions()) {
-				//miro si me interesa descartar o no la rama
+				// miro si me interesa descartar o no la rama
 				Double cota = acotar(acumulado, prob, action);
 				if (cota > mejorValor) { // la descarto
 					res = null; // continue;
 				} else {
-					//obtengo la solución del vecino tomando un camino(accíon)
+					// obtengo la solución del vecino tomando un camino(accíon)
 					MulticonjuntoProblem vecino = prob.neighbor(action);
-					//Acción = peso
-					//Vecino = nuevo vertice tomando una  accion
+					// Acción = peso
+					// Vecino = nuevo vertice tomando una accion
 //					acumulado  = lo que llevo acunulado mas esa accion 
-					// arrastro la memoria 
-					
+					// arrastro la memoria
+
 					Spm s = pdr_search(vecino, acumulado + action, memory);
 					if (s != null) {
-						//si da una solucion valida, la instanciamos de forma estaitca 
-						// para  guardarla en la lista
+						// si da una solucion valida, la instanciamos de forma estaitca
+						// para guardarla en la lista
 						// de soluciones parciales
 						Spm amp = Spm.of(action, s.weight() + action);
 						soluciones.add(amp);
@@ -81,11 +81,11 @@ public class MulticonjuntoPDR {
 				}
 			}
 			// Estamos minimizando
-			// de todas las soluciones, quedate comn la mas pequeña 
-			// solucion mas pequeña  = solución con menor peso
+			// de todas las soluciones, quedate comn la mas pequeña
+			// solucion mas pequeña = solución con menor peso
 			res = soluciones.stream().min(Comparator.naturalOrder()).orElse(null);
 			if (res != null)
-				// guardo las solución para ese subproblema 
+				// guardo las solución para ese subproblema
 				memory.put(prob, res);
 		}
 
@@ -99,19 +99,19 @@ public class MulticonjuntoPDR {
 
 	public static SolucionMulticonjunto getSolucion() {
 		// la solución del problema original no es mas que una serie de pasos
-		//serie de pasos  = lista de acciones 
+		// serie de pasos = lista de acciones
 		List<Integer> acciones = List2.empty();
 //		/obengo el problema inicial 
 		MulticonjuntoProblem prob = MulticonjuntoProblem.initial();
-		//Obtengo la solución del problema inicial 
+		// Obtengo la solución del problema inicial
 		Spm spm = memory.get(prob);
 		while (spm != null && spm.a != null) {
-			//recreo los pasos 
+			// recreo los pasos
 			MulticonjuntoProblem old = prob;
-			//guardo la accion dek probema actual(solución))
+			// guardo la accion dek probema actual(solución))
 			acciones.add(spm.a);
-			//actualizo el problema 
-			// actiualizar el problema= obtener el subproblema dado a 
+			// actualizo el problema
+			// actiualizar el problema= obtener el subproblema dado a
 			prob = old.neighbor(spm.a);
 			spm = memory.get(prob);
 		}

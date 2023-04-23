@@ -34,17 +34,19 @@ public record MulticonjuntoProblem(Integer index, Integer remaining) {
 		return alternativas;
 
 	}
+
 	public MulticonjuntoProblem neighbor(Integer a) {
-		return of(index+1, remaining-a*DatosMulticonjunto.getElemento(index));
+		return of(index + 1, remaining - a * DatosMulticonjunto.getElemento(index));
 	}
+
 	public Double heuristic() {
 		Double res = 0.;
-		if(remaining>0) {
-			Integer max = IntStream.range(index, DatosMulticonjunto.getNumElementos()).
-					map(i-> DatosMulticonjunto.getElemento(i)).filter(e-> e<=remaining).max().orElse(0);
-			if(max>0) {
+		if (remaining > 0) {
+			Integer max = IntStream.range(index, DatosMulticonjunto.getNumElementos())
+					.map(i -> DatosMulticonjunto.getElemento(i)).filter(e -> e <= remaining).max().orElse(0);
+			if (max > 0) {
 				Integer r = remaining / max;
-				res = (double) (remaining% max== 0?r:r+1);
+				res = (double) (remaining % max == 0 ? r : r + 1);
 			}
 		}
 		return res;

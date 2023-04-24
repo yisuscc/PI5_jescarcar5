@@ -13,8 +13,8 @@ public class CursoHeuristic {
 
 	public static Double heuristic(CursoVertex v1, Predicate<CursoVertex> goal, CursoVertex v2) {
 		// version voraz de la heuristica
-		return pesoVoraz(v1);
-
+		//return pesoVoraz(v1);
+return 0.;
 	}
 
 	private static Double pesoVoraz(CursoVertex v1) {

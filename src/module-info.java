@@ -6,4 +6,5 @@
 module pI5_jescarcar5 {
 	requires transitive grafos;
 	requires partecomun;
+	requires org.jgrapht.core;
 }

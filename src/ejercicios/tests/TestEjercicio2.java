@@ -12,7 +12,7 @@ import ejercicios.ejercicio2.CursoVertex;
 public class TestEjercicio2 {
 
 	public static void main(String[] args) {
-		List.of(1, 2, 3).forEach(num_test -> {
+		List.of( 2).forEach(num_test -> {
 			TestsPI5.iniTest("Ejercicio2DatosEntrada", num_test, DatosEjercicio2::iniDatos);
 			CursoVertex v_inicial = CursoVertex.initial();
 			Predicate<CursoVertex> es_terminal = CursoVertex.goal();

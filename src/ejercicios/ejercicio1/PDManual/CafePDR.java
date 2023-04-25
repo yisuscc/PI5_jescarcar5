@@ -23,7 +23,7 @@ public class CafePDR {
 		}
 
 	}
-	public static Double maxValue = Double.MIN_VALUE;
+	public static Double maxValue;
 	public static CafeProblem start;
 	public static Map<CafeProblem, SpCafe> memory;
 	

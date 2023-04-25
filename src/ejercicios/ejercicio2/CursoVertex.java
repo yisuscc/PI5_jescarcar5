@@ -38,7 +38,7 @@ public record CursoVertex(Integer index, Set<Integer> remaining, Set<Integer> ce
 	}
 
 	@Override
-	public List<Integer> actions() {
+	public List<Integer> actions() {//TODO Rehacer
 		List<Integer> alternativas = List2.empty();
 		if (index < DatosEjercicio2.getNumCursos()) {
 			// comprobar si reduce las tematicas restantes y si los centros no superan los

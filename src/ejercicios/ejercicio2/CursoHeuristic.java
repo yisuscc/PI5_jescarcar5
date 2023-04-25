@@ -1,5 +1,6 @@
 package ejercicios.ejercicio2;
 
+import java.util.List;
 import java.util.Set;
 
 import java.util.function.Predicate;
@@ -7,6 +8,7 @@ import java.util.function.ToDoubleFunction;
 import java.util.stream.IntStream;
 
 import _datos.DatosEjercicio2;
+import us.lsi.common.List2;
 import us.lsi.common.Set2;
 
 public class CursoHeuristic {
@@ -14,9 +16,24 @@ public class CursoHeuristic {
 	public static Double heuristic(CursoVertex v1, Predicate<CursoVertex> goal, CursoVertex v2) {
 		// version voraz de la heuristica
 		//return pesoVoraz(v1);
-return 0.;
+	return altHeur(v1, goal, v2);
 	}
 
+	// la heuristica de este problema es literalmente el problema del ejempo 2
+	//que estoy atontao 
+	private static Double altHeur(CursoVertex v1, Predicate<CursoVertex> goal, CursoVertex v2) {
+		/*
+		 * return v1.remaining().isEmpty() ? 0. : //
+				IntStream.range(v1.index(), DatosSubconjuntos.getNumSubconjuntos())
+						.filter(i -> !List2.intersection(v1.remaining(), DatosSubconjuntos.getElementos(i)).isEmpty())
+						.mapToDouble(i -> DatosSubconjuntos.getPeso(i)).min().orElse(100.);
+		 */
+		//creo que en este caso el  n de centros se puede ignorar 
+		return v1.remaining().isEmpty()?0.: IntStream.range(v1.index(), DatosEjercicio2.getNumCursos()).
+				filter(i->!List2.intersection(v1.remaining(),DatosEjercicio2.getTematicasCursos(i)).isEmpty()).
+				filter(i-> Set2.union(v1.centers(), Set2.of(DatosEjercicio2.getCentroCurso(i))).size()<= DatosEjercicio2.getMaxCentros() ).
+				mapToDouble(i-> DatosEjercicio2.getPrecioCurso(i)).min().orElse(100.);
+	}
 	private static Double pesoVoraz(CursoVertex v1) {
 		/*
 		 * Set<Integer> rem = Set2.difference(remaining,

@@ -86,14 +86,14 @@ public class GraphsPI5 {
 
 	// Ejercicio 2: Grafo no greedy
 	public static EGraph<CursoVertex, CursoEdge> cursoGraph(CursoVertex v_inicial, Predicate<CursoVertex> es_terminal) {
-		return EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Max).goalHasSolution(es_terminal)
+		return EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Min).goalHasSolution(es_terminal)
 				.heuristic(CursoHeuristic::heuristic).build();
 	}
 
 	// Ejercicio 2: Grafo greedy
 	public static EGraph<CursoVertex, CursoEdge> greedyCursoGraph(CursoVertex v_inicial,
 			Predicate<CursoVertex> es_terminal) {
-		return EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Max).greedyEdge(CursoVertex::greedyEdge)
+		return EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Min).greedyEdge(CursoVertex::greedyEdge)
 				.heuristic(CursoHeuristic::heuristic).build();
 	}
 

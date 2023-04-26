@@ -3,6 +3,7 @@ package _datos;
 import java.util.Set;
 
 import org.jgrapht.Graph;
+import org.jgrapht.Graphs;
 
 import us.lsi.graphs.Graphs2;
 import us.lsi.graphs.GraphsReader;
@@ -10,6 +11,8 @@ import us.lsi.graphs.SimpleEdge;
 import us.lsi.graphs.views.IntegerVertexGraphView;
 
 public class DatosEjercicio4 {
+
+
 	public static record Cliente2(Integer idCliente, Double beneficio) {//para que no se confunda con el cliente del lsi 
 		public static Cliente2 create(String[] aux) {
 			// 0,0.
@@ -32,9 +35,10 @@ public class DatosEjercicio4 {
 	private static Integer n;
 
 	public static void iniDatos(String fichero) {//TODO Igrafo integer o grafo normal 
-		Graph<Cliente2, Arista> gra = GraphsReader.newGraph(fichero, Cliente2::create, Arista::create,
-				Graphs2::simpleWeightedGraph, Arista::kms);
+		Graph<Cliente2, Arista> gra = GraphsReader.newGraph(fichero, Cliente2::create, Arista::create,Graphs2::simpleWeightedGraph, Arista::kms);
+		//hacemos el grafo completo
 		intGrafo = IntegerVertexGraphView.of(gra);
+		
 		grafo = gra;
 		n = gra.vertexSet().size();
 
@@ -51,11 +55,11 @@ public class DatosEjercicio4 {
 	public static Set<SimpleEdge<Integer>> getIntAristas() {
 		return intGrafo.edgeSet();
 	}
-	public static SimpleEdge<Integer>getAristas(){
-		
+	public static Set<Integer>getVecinos(Integer i){
+		return Graphs.neighborSetOf(intGrafo,i);
 	}
 	
-	//TODO vertice ofigen siempre el cero
+	
 	public static Cliente2 getOrigen() {
 		return intGrafo.getVertex(0);
 	}
@@ -66,7 +70,7 @@ public class DatosEjercicio4 {
 	public static Double getPesoArista(Integer i, Integer j) {
 		return intGrafo.getEdgeWeight(i, j); 
 	}
-	//TODO bi double beneficio del cliente ubicado en el vertice
+	// bi double beneficio del cliente ubicado en el vertice
 	public static Double getBeneficioCliente(Integer i) {
 		return intGrafo.getVertex(i).beneficio();
 	}

@@ -16,6 +16,9 @@ import ejercicios.ejercicio1.CafeVertex;
 import ejercicios.ejercicio2.CursoEdge;
 import ejercicios.ejercicio2.CursoHeuristic;
 import ejercicios.ejercicio2.CursoVertex;
+import ejercicios.ejercicio4.RepartoEdge;
+import ejercicios.ejercicio4.RepartoHeuristica;
+import ejercicios.ejercicio4.RepartoVertex;
 import us.lsi.graphs.virtual.EGraph;
 import us.lsi.graphs.virtual.EGraph.Type;
 import us.lsi.path.EGraphPath.PathType;
@@ -81,7 +84,7 @@ public class GraphsPI5 {
 			Predicate<CafeVertex> es_terminal) {
 
 		return EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Max).greedyEdge(CafeVertex::greedyEdge)
-				.heuristic(CafeHeuristic::heuristic).build();
+				.build();
 	}
 
 	// Ejercicio 2: Grafo no greedy
@@ -95,6 +98,14 @@ public class GraphsPI5 {
 			Predicate<CursoVertex> es_terminal) {
 		return EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Min).greedyEdge(CursoVertex::greedyEdge)
 				.heuristic(CursoHeuristic::heuristic).build();
+	}
+	//Ejercicio 4: Grafo no greedy
+	public static EGraph<RepartoVertex, RepartoEdge>repartoGraph(RepartoVertex v_inicial,Predicate<RepartoVertex>es_terminal){
+		return EGraph.virtual(v_inicial,es_terminal,PathType.Sum,Type.Max).goalHasSolution(es_terminal).heuristic(RepartoHeuristica::heuristic).build();
+	}
+	//Ejercicio 4 grafo greedy 
+	public static EGraph<RepartoVertex, RepartoEdge>greedyRepartoGraph(RepartoVertex v_inicial,Predicate<RepartoVertex>es_terminal){
+		return EGraph.virtual(v_inicial, es_terminal, PathType.Sum,Type.Max).greedyEdge(RepartoVertex::greedyEdge).build();
 	}
 
 }

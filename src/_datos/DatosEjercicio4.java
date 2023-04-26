@@ -4,7 +4,9 @@ import java.util.Set;
 
 import org.jgrapht.Graph;
 import org.jgrapht.Graphs;
+import org.jgrapht.graph.SimpleWeightedGraph;
 
+import us.lsi.common.Set2;
 import us.lsi.graphs.Graphs2;
 import us.lsi.graphs.GraphsReader;
 import us.lsi.graphs.SimpleEdge;
@@ -28,6 +30,9 @@ public class DatosEjercicio4 {
 			return new Arista(Integer.valueOf(aux[0].trim()), Integer.valueOf(aux[1].trim()),
 					Double.valueOf(aux[1].trim()));
 		}
+		public static Arista of(Integer idCliente1, Integer idCliente2, Double k) {
+			return new Arista(idCliente1, idCliente2, k);
+		}
 	}
 
 	private static IntegerVertexGraphView<Cliente2, Arista> intGrafo;// a diferencia de la pi4 lo voy a hacer con 
@@ -35,8 +40,17 @@ public class DatosEjercicio4 {
 	private static Integer n;
 
 	public static void iniDatos(String fichero) {//TODO Igrafo integer o grafo normal 
-		Graph<Cliente2, Arista> gra = GraphsReader.newGraph(fichero, Cliente2::create, Arista::create,Graphs2::simpleWeightedGraph, Arista::kms);
+		SimpleWeightedGraph<Cliente2, Arista> gra = GraphsReader.newGraph(fichero, Cliente2::create, Arista::create,Graphs2::simpleWeightedGraph, Arista::kms);
 		//hacemos el grafo completo
+		for(Cliente2 c1:gra.vertexSet()) {
+			Set<Cliente2>s = Set2.difference(gra.vertexSet(), Set.of(c1));
+			for(Cliente2 c2 : s) {
+				if(!gra.containsEdge(c2, c1)) {
+					gra.addEdge(c1,c2,Arista.of(c1.idCliente(), c2.idCliente(),1000.));
+					
+				}
+			}
+		}
 		intGrafo = IntegerVertexGraphView.of(gra);
 		
 		grafo = gra;

@@ -1,2 +1,13 @@
 strict digraph G {
+  1 [ style="bold" label="CursoVertex[index=0, remaining=[1, 2, 3, 4, 5], centers=[]]" ];
+  2 [ style="solid" label="CursoVertex[index=1, remaining=[1, 2, 3, 4, 5], centers=[]]" ];
+  3 [ style="solid" label="CursoVertex[index=2, remaining=[1, 2, 3, 4, 5], centers=[]]" ];
+  4 [ style="solid" label="CursoVertex[index=3, remaining=[1, 2, 3, 4, 5], centers=[]]" ];
+  5 [ style="solid" label="CursoVertex[index=2, remaining=[2, 3, 5], centers=[0]]" ];
+  6 [ style="solid" label="CursoVertex[index=3, remaining=[2, 3, 5], centers=[0]]" ];
+  1 -> 2 [ style="solid" label="CursoEdge[source=CursoVertex[index=0, remaining=[1, 2, 3, 4, 5], centers=[]], target=CursoVertex[index=1, remaining=[1, 2, 3, 4, 5], centers=[]], action=0, weight=0.0]" ];
+  2 -> 3 [ style="solid" label="CursoEdge[source=CursoVertex[index=1, remaining=[1, 2, 3, 4, 5], centers=[]], target=CursoVertex[index=2, remaining=[1, 2, 3, 4, 5], centers=[]], action=0, weight=0.0]" ];
+  3 -> 4 [ style="solid" label="CursoEdge[source=CursoVertex[index=2, remaining=[1, 2, 3, 4, 5], centers=[]], target=CursoVertex[index=3, remaining=[1, 2, 3, 4, 5], centers=[]], action=0, weight=0.0]" ];
+  2 -> 5 [ style="solid" label="CursoEdge[source=CursoVertex[index=1, remaining=[1, 2, 3, 4, 5], centers=[]], target=CursoVertex[index=2, remaining=[2, 3, 5], centers=[0]], action=1, weight=3.0]" ];
+  5 -> 6 [ style="solid" label="CursoEdge[source=CursoVertex[index=2, remaining=[2, 3, 5], centers=[0]], target=CursoVertex[index=3, remaining=[2, 3, 5], centers=[0]], action=0, weight=0.0]" ];
 }

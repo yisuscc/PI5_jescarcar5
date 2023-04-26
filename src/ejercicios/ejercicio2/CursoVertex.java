@@ -50,7 +50,7 @@ public record CursoVertex(Integer index, Set<Integer> remaining, Set<Integer> ce
 			Set<Integer> cntrs = Set2.union(centers, Set2.of(cntr));
 			Set<Integer> rest = Set2.difference(rmnng, tmtcs);
 
-			if (!rest.equals(rmnng) && cntrs.size() <= DatosEjercicio2.getMaxCentros()) {
+			if (!rest.equals(rmnng) && cntrs.size() <= DatosEjercicio2.getMaxCentros()&& !rmnng.isEmpty()) {
 				alternativas = List2.of(0, 1);
 			} else {
 				alternativas = List2.of(0);
@@ -83,14 +83,11 @@ public record CursoVertex(Integer index, Set<Integer> remaining, Set<Integer> ce
 	public CursoEdge greedyEdge() {
 		Set<Integer> rem = Set2.difference(remaining, DatosEjercicio2.getTematicasCursos(index));
 		Set<Integer> cent = Set2.union(centers(), Set2.of(DatosEjercicio2.getCentroCurso(index)));
-		Boolean cond = !rem.equals(remaining) && cent.size() <= DatosEjercicio2.getMaxCentros();
+		//Boolean cond = !rem.equals(remaining) && cent.size() <= DatosEjercicio2.getMaxCentros()  ;
+		Boolean cond = rem.size()< remaining().size() && cent.size() <= DatosEjercicio2.getMaxCentros()  ;
 		return cond ? edge(1) : edge(0);
 	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

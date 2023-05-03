@@ -6,10 +6,12 @@ import org.jgrapht.Graph;
 import org.jgrapht.Graphs;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
+import us.lsi.colors.GraphColors;
 import us.lsi.common.Set2;
 import us.lsi.graphs.Graphs2;
 import us.lsi.graphs.GraphsReader;
 import us.lsi.graphs.SimpleEdge;
+import us.lsi.graphs.views.CompleteGraphView;
 import us.lsi.graphs.views.IntegerVertexGraphView;
 
 public class DatosEjercicio4 {
@@ -23,15 +25,20 @@ public class DatosEjercicio4 {
 		}
 	}
 
-	public static record Arista(Integer idCliente1, Integer idCliente2, Double kms) {
+	public static record Arista(Double kms, int id) {
+		private static int  cont = 0;
+		
 		public static Arista create(String[] aux) {
 			// 0,1,1.0
 			// String[] aux = linea.split(",");
-			return new Arista(Integer.valueOf(aux[0].trim()), Integer.valueOf(aux[1].trim()),
-					Double.valueOf(aux[1].trim()));
+			int id = cont;
+			cont++;
+			return new Arista(Double.valueOf(aux[2].trim()),id);
 		}
-		public static Arista of(Integer idCliente1, Integer idCliente2, Double k) {
-			return new Arista(idCliente1, idCliente2, k);
+		public static Arista of(Double k) {
+			int id = cont;
+			cont++;
+			return new Arista(k,id);
 		}
 	}
 
@@ -39,22 +46,16 @@ public class DatosEjercicio4 {
 	private static Graph<Cliente2, Arista> grafo;// pongo el grafo normal por si acaso
 	private static Integer n;
 
-	public static void iniDatos(String fichero) {//TODO Igrafo integer o grafo normal 
+	public static void iniDatos(String fichero) {
 		SimpleWeightedGraph<Cliente2, Arista> gra = GraphsReader.newGraph(fichero, Cliente2::create, Arista::create,Graphs2::simpleWeightedGraph, Arista::kms);
 		//hacemos el grafo completo
-		for(Cliente2 c1:gra.vertexSet()) {
-			Set<Cliente2>s = Set2.difference(gra.vertexSet(), Set.of(c1));
-			for(Cliente2 c2 : s) {
-				if(!gra.containsEdge(c2, c1)) {
-					gra.addEdge(c1,c2,Arista.of(c1.idCliente(), c2.idCliente(),1000.));
-					
-				}
-			}
-		}
-		intGrafo = IntegerVertexGraphView.of(gra);
+		Double pesoMax = gra.edgeSet().stream().mapToDouble(m->m.kms()).sum()*1000;
+		Graph<Cliente2, Arista> gra2 = CompleteGraphView.of(gra, ()-> Arista.of(pesoMax));
+		//Graph<Cliente2, Arista> gra2 = gra;
+		intGrafo = IntegerVertexGraphView.of(gra2);
 		
-		grafo = gra;
-		n = gra.vertexSet().size();
+		grafo = gra2;
+		n = gra2.vertexSet().size();
 
 	}
 	
@@ -88,10 +89,13 @@ public class DatosEjercicio4 {
 	public static Double getBeneficioCliente(Integer i) {
 		return intGrafo.getVertex(i).beneficio();
 	}
-
+	public static void test() {
+		String fichero = "ficheros/Ejercicio4DatosEntrada1.txt";
+		iniDatos(fichero);
+		System.out.println(grafo);
+	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	test();
 	}
 
 }

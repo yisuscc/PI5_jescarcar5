@@ -26,7 +26,7 @@ implements VirtualVertex<RepartoVertex, RepartoEdge, Integer> {
 // return initial
 	public static RepartoVertex initial() {
 		Set<Integer>p =  Set2.range(1, DatosEjercicio4.getN());
-		return of(0,0,p,List2.of(0),0);
+		return of(1,0,p,List2.of(0),0);
 		
 	}
 // goal
@@ -41,12 +41,23 @@ implements VirtualVertex<RepartoVertex, RepartoEdge, Integer> {
 	@Override
 	public List<Integer> actions() {
 		List<Integer> alternativas = List2.empty();
-		Integer n = DatosEjercicio4.getN();
-		//EL grafo es "completo" así que  siempre tendrá camino entre un vertice y otro 
-		// caso indice <n
-		if(index< DatosEjercicio4.getN()) {
-			alternativas = new ArrayList<>(Set2.copy(pendientes));
-			// Notas, pendientes no incluye al vertice actual 
+		Integer n = DatosEjercicio4.getN();// para que el numero se corresponda con el numero de vertices del grafo 
+		
+		// Notas, pendientes no incluye al vertice actual 
+		
+		Set<Integer> vecinos = DatosEjercicio4.getVecinos(this.cliente());
+		Set<Integer> sAux = Set2.intersection(this.pendientes(),vecinos );
+		if(index<n&& !sAux.isEmpty()) {
+			
+		if(index == n-1 ){// caso  penultimo vertice
+			//el vertice destino tiene que tener arista con el almacen 
+			alternativas= sAux.stream().filter(i-> DatosEjercicio4.existeArista(i, 0)).toList();
+			//si no existiera creo que devolvería una lista vacía 
+		}else {//caso resto de vertices
+			alternativas = List2.ofCollection(sAux);
+		
+		}
+			
 		}
 		return alternativas;
 	}
@@ -71,7 +82,7 @@ implements VirtualVertex<RepartoVertex, RepartoEdge, Integer> {
 		Integer c =  this.cliente;
 		// primero un comparador
 		Comparator<Integer> cmp = Comparator.comparing(f-> DatosEjercicio4.getBeneficioCliente(f)-DatosEjercicio4.getPesoArista(c, f));
-		Integer max = pendientes().stream().max(cmp).get();
+		Integer max = Set2.intersection(pendientes(), DatosEjercicio4.getVecinos(cliente)).stream().max(cmp).get();
 		 return edge(max);
 	}
 

@@ -22,15 +22,15 @@ public class TestEjercicio4 {
 			var gp = TestsPI5.testGreedy(GraphsPI5.greedyRepartoGraph(v_inicial, es_terminal));
 			TestsPI5.toConsole("Voraz", gp, SolucionReparto::of);
 
-//		var path = TestsPI5.testAStar(GraphsPI5.repartoGraph(v_inicial, es_terminal), gp);
-//		TestsPI5.toConsole("A*", path, SolucionReparto::of);
-//
-//			path = TestsPI5.testPDR(GraphsPI5.repartoGraph(v_inicial, es_terminal), gp);
-//			TestsPI5.toConsole("PDR", path, SolucionReparto::of);
-//
-//			path = TestsPI5.testBT(GraphsPI5.repartoGraph(v_inicial, es_terminal), gp);
-//			TestsPI5.toConsole("BT", path, SolucionReparto::of);
-//
+		var path = TestsPI5.testAStar(GraphsPI5.repartoGraph(v_inicial, es_terminal), gp);
+		TestsPI5.toConsole("A*", path, SolucionReparto::of);
+
+		path = TestsPI5.testPDR(GraphsPI5.repartoGraph(v_inicial, es_terminal), gp);
+		TestsPI5.toConsole("PDR", path, SolucionReparto::of);
+
+		path = TestsPI5.testBT(GraphsPI5.repartoGraph(v_inicial, es_terminal), gp);
+		TestsPI5.toConsole("BT", path, SolucionReparto::of);
+
 		TestsPI5.line("*");
 
 		});

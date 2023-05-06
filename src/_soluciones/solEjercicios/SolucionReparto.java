@@ -26,7 +26,7 @@ public class SolucionReparto implements Comparable<SolucionReparto> {
 		return res;
 	}
 	private SolucionReparto(List<Integer>values) {
-		List<Integer> v = List2.addFirst(values,0);
+		//List<Integer> v = List2.addFirst(values,0);
 		Integer kms= 0;
 		Double ben= IntStream.range(1, DatosEjercicio4.getN()).mapToDouble(i->DatosEjercicio4.getBeneficioCliente(i)).sum();
 		Integer vertS = 0;
@@ -38,7 +38,7 @@ public class SolucionReparto implements Comparable<SolucionReparto> {
 			kms += DatosEjercicio4.getPesoArista(i, j).intValue();
 		}
 		beneficio = ben-pen;
-		solucion = List2.addLast(v, 0);
+		solucion = List2.addLast(values, 0);
 		
 	}
 	@Override

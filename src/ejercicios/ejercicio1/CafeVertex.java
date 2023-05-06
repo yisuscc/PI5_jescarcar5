@@ -24,15 +24,15 @@ public record CafeVertex(Integer index, List<Integer> remaining)
 		return of(0, ls);
 	}
 
-	// TODO el GOal
+	
 	public static Predicate<CafeVertex> goal() {
 		// si no furula probad con ==
 		return v -> v.index().equals(DatosEjercicio1.getNumVarCafe());
 	}
 
-	// TODO El HasSolution
+	
 	public static Predicate<CafeVertex> goalHasSolution() {
-		// TODO cambiar
+		
 		/*
 		 * sería solución si los elementos del remaining son mayores o iguale que 0
 		 * 
@@ -118,10 +118,6 @@ public record CafeVertex(Integer index, List<Integer> remaining)
 
 	}
 
-//	@Override
-//	public String toString() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
 
 }

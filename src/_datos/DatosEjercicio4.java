@@ -89,6 +89,9 @@ public class DatosEjercicio4 {
 	public static Double getBeneficioCliente(Integer i) {
 		return intGrafo.getVertex(i).beneficio();
 	}
+	public static Boolean existeArista(Integer i, Integer j) {
+		return intGrafo.containsEdge(i, j);
+	}
 	public static void test() {
 		String fichero = "ficheros/Ejercicio4DatosEntrada1.txt";
 		iniDatos(fichero);
@@ -96,6 +99,9 @@ public class DatosEjercicio4 {
 	}
 	public static void main(String[] args) {
 	test();
+	System.out.println("El vertice vecino es:"+intGrafo.getVertex(0));
+	System.out.println("Vecinos del vertice 0:" + getVecinos(0));
+	GraphColors.toDot(intGrafo, "grafos/grafo.gv");
 	}
 
 }

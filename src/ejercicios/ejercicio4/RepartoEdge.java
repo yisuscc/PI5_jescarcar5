@@ -10,7 +10,7 @@ import us.lsi.graphs.virtual.SimpleEdgeAction;
 public record RepartoEdge(RepartoVertex source, RepartoVertex target,Integer action, Double weight )implements SimpleEdgeAction<RepartoVertex, Integer> {
 // Hacer el metodo of
 	public static RepartoEdge of(RepartoVertex s, RepartoVertex t,Integer a) {
-		//TODO  version que tiene en cuenta el coste de retorno
+		
 		
 		//		// averiguamos el beneficio
 	Integer vertS = s.cliente();
@@ -19,7 +19,10 @@ public record RepartoEdge(RepartoVertex source, RepartoVertex target,Integer act
 //		//2 averiguamos la penalización
 		Double pen = s.kms()+ DatosEjercicio4.getPesoArista(vertS, vertT);
 //		//3 calculamos el peso(no tiene en cuenta el coste de la gasolina
-		//ni el coste de vuelta al almacén)
+				if(s.index() == DatosEjercicio4.getN()-1) {
+					 pen+= DatosEjercicio4.getPesoArista(0, vertT);
+		}
+	
 		Double w = b-pen;
 		return new RepartoEdge(s, t, a, w);
 

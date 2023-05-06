@@ -79,7 +79,7 @@ public class DatosEjercicio3 {
 		return trabajos.get(j).calidad();
 	}
 
-	public static void iniData(String fichero) {
+	public static void iniDatos(String fichero) {
 		List<String> lsF = Files2.linesFromFile(fichero);
 		Integer indexTrabajos = lsF.indexOf("// TRABAJOS");
 		List<Investigador> inv = List.copyOf(lsF.subList(1, indexTrabajos)).stream().map(s -> Investigador.create(s))
@@ -92,7 +92,7 @@ public class DatosEjercicio3 {
 
 	public static void test(String fichero) {
 
-		iniData(fichero);
+		iniDatos(fichero);
 		System.out.println("Estos son los trabajos" + getTrabajos());
 		System.out.println("Estos son los inv" + getInvestigadores());
 

@@ -9,6 +9,7 @@ import ejemplos.ejemplo2.SubconjuntosEdge;
 import ejemplos.ejemplo2.SubconjuntosHeuristic;
 import ejemplos.ejemplo2.SubconjuntosVertex;
 import ejemplos.ejemplo3.AlumnosEdge;
+import ejemplos.ejemplo3.AlumnosHeuristic;
 import ejemplos.ejemplo3.AlumnosVertex;
 import ejercicios.ejercicio1.CafeEdge;
 import ejercicios.ejercicio1.CafeHeuristic;
@@ -64,15 +65,19 @@ public class GraphsPI5 {
 	// Ejemplo3: Grafo NO Greedy
 	public static EGraph<AlumnosVertex, AlumnosEdge> academyGraph(AlumnosVertex v_inicial,
 			Predicate<AlumnosVertex> es_terminal) {
-		// TODO Implementarlo de forma similar a los de los ejemplos 1 y 2
-		return null;
+		
+		return EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Min).greedyEdge(AlumnosVertex::greedyEdge)
+				.goalHasSolution(AlumnosVertex.goalHasSolution()).heuristic(AlumnosHeuristic::heuristic)
+				.build();
 	}
 
 	// Ejemplo3: Grafo Greedy
 	public static EGraph<AlumnosVertex, AlumnosEdge> greedyAcademyGraph(AlumnosVertex v_inicial,
 			Predicate<AlumnosVertex> es_terminal) {
-		// TODO Implementarlo de forma similar a los greedy de los ejemplos 1 y 2
-		return null;
+		
+		return EGraph.virtual(v_inicial, es_terminal, PathType.Sum, Type.Min).greedyEdge(AlumnosVertex::greedyEdge)
+				.goalHasSolution(AlumnosVertex.goalHasSolution()).heuristic(AlumnosHeuristic::heuristic)
+				.build();
 	}
 
 	// Ejercicio 1 . Grafo no greedy

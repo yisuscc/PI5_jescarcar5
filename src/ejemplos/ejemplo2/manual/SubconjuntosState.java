@@ -7,7 +7,7 @@ import _soluciones.SolucionSubconjuntos;
 
 import us.lsi.common.List2;
 
-public class SubconjuntosState {
+public class SubconjuntosState {// miodela unicamente las variazas entre estados
 
 	SubconjuntosProblem actual;
 	Double acumulado;
@@ -33,23 +33,33 @@ public class SubconjuntosState {
 	}
 
 	public void forward(Integer a) {		
+		//hacia delante
+		// aumenta el acumulado
 		acumulado += a * DatosSubconjuntos.getPeso(actual.index());
+		//añado el paso xd
 		acciones.add(a);
+		//añado el subproblema
 		anteriores.add(actual);
+		//obtengo el siguiente estado 
 		actual = actual.neighbor(a);
 	}
 
 	public void back() {
-		int last = acciones.size() - 1;
+		//hacia atras
+		// obtengo la última acción por la que he pasado 
+	
+		int last = acciones.size() - 1; //el último problema 
+		//obtengo el ultimo subproblema por el que he pasado 
 		var prob_ant = anteriores.get(last);
-		
+		// deshgo el acumulado
 		acumulado -= acciones.get(last) * DatosSubconjuntos.getPeso(prob_ant.index());
 		acciones.remove(last);
 		anteriores.remove(last);
+		// obtengo el estado anterior
 		actual = prob_ant;
 	}
 
-	public List<Integer> alternativas() {
+	public List<Integer> alternativas() { // se modelan en el propio problema 
 		return actual.actions();
 	}
 

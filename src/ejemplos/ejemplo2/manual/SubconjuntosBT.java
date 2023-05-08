@@ -19,6 +19,7 @@ public class SubconjuntosBT {
 	}
 
 	private static void bt_search() {
+		// el objetivo es generar un 
 		if (estado.esSolucion()) {
 			Double valorObtenido = estado.acumulado;
 			if (valorObtenido < mejorValor) {  // Estamos minimizando
@@ -26,7 +27,10 @@ public class SubconjuntosBT {
 				soluciones.add(estado.getSolucion());
 			}
 		} else if(!estado.esTerminal()){
+			// siempre y cuando no haya termicado estudio las alternativas de cada estado
 			for (Integer a: estado.alternativas()) {
+//				me interesa ir por esa rama
+//				depende si la cota  es menor que , entonces se porque estoy minimizando
 				if (estado.cota(a) <= mejorValor) {  // Estamos minimizando
 					estado.forward(a);
 					bt_search();

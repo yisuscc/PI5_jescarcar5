@@ -88,6 +88,7 @@ public record CursoVertex(Integer index, Set<Integer> remaining, Set<Integer> ce
 		return cond ? edge(1) : edge(0);
 	}
 
+
 	
 
 }

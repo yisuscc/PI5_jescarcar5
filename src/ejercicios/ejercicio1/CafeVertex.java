@@ -104,8 +104,9 @@ public record CafeVertex(Integer index, List<Integer> remaining)
 	}
 
 	public CafeEdge greedyEdge() {
-
-		// return existeMejorArista()?edge(0):edge(limiteVarCafe(index, remaining));
+		//Dos variantes del greedy edge 
+		//descomente la que se prefiera 
+		//return existeMejorArista()?edge(0):edge(limiteVarCafe(index, remaining));
 		return edge(limiteVarCafe(index, remaining));
 	}
 

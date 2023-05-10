@@ -48,8 +48,9 @@ public class DatosEjercicio4 {
 
 	public static void iniDatos(String fichero) {
 		SimpleWeightedGraph<Cliente2, Arista> gra = GraphsReader.newGraph(fichero, Cliente2::create, Arista::create,Graphs2::simpleWeightedGraph, Arista::kms);
-		//hacemos el grafo completo
-		Double pesoMax = gra.edgeSet().stream().mapToDouble(m->m.kms()).sum()*1000;
+		//NO voy a usar el grafo completo por temas de eficicencia(un menor tamaño de grafo virtual)
+		//pero si hiciera falta, descomentar las 2 lineas siguientes
+		//Double pesoMax = gra.edgeSet().stream().mapToDouble(m->m.kms()).sum()*1000;
 		//Graph<Cliente2, Arista> gra2 = CompleteGraphView.of(gra, ()-> Arista.of(pesoMax));
 		Graph<Cliente2, Arista> gra2 = gra;
 		intGrafo = IntegerVertexGraphView.of(gra2);

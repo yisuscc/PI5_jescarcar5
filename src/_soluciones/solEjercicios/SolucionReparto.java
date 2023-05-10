@@ -53,6 +53,9 @@ public class SolucionReparto implements Comparable<SolucionReparto> {
 		
 		
 	}
+	public Double getBeneficio() {
+		return beneficio;
+	}
 	@Override
 	public String toString() {
 		String res = "Ruta optima: " +solucion+"\r\n"+"Beneficio:"+beneficio+"\r\n"+"Kms: "+kms+"\r\n"+"La distancia en kilometros puede ser imprecisa(ver linea 48)";

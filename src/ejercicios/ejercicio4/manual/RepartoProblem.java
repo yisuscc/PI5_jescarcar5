@@ -52,7 +52,7 @@ public record RepartoProblem(Integer index, Integer cliente, Set<Integer> pendie
 	}
 	// heuristica
 	public Double heuristic() { //TODO Hacerl a heuristica
-		return 0.;
+		return 1.;
 	}
 
 }

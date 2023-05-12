@@ -65,19 +65,29 @@ public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>
 		return res;
 	}
 	// TODO GreedyEdge
-	@Override
-	public List<Integer> actions() {
-		List<Integer> alternativas = List2.empty();
-		Integer z = (DatosEjercicio3.getNumTrabajos()*DatosEjercicio3.getNumInvestigadores());
+	public Ejer3Edge greedyEdge() {
 		Integer j = zIndex()%DatosEjercicio3.getNumTrabajos();
 		Integer i= zIndex()/DatosEjercicio3.getNumTrabajos();
+		Integer esp= DatosEjercicio3.getEspecialidadTrabajador(i);
+		Integer min= Math.min(days.get(esp),distribution().get(0).get(esp) )+1;
+		return edge(min);
 		
-		if(zIndex<z) {
-			Integer esp= DatosEjercicio3.getEspecialidadTrabajador(i);
-			Integer min= Math.min(days.get(esp),distribution().get(0).get(esp) )+1;
-			alternativas = List2.rangeList(0,min);
-		}
-		return alternativas;
+	}
+	@Override
+	public List<Integer> actions() {
+//		List<Integer> alternativas = List2.empty();
+//		Integer z = (DatosEjercicio3.getNumTrabajos()*DatosEjercicio3.getNumInvestigadores());
+//		Integer j = zIndex()%DatosEjercicio3.getNumTrabajos();
+//		Integer i= zIndex()/DatosEjercicio3.getNumTrabajos();
+//		
+//		
+//		if(zIndex<z) {
+//			Integer esp= DatosEjercicio3.getEspecialidadTrabajador(i);
+//			Integer min= Math.min(days.get(esp),distribution().get(0).get(esp) )+1;
+//			alternativas = List2.rangeList(0,min);
+//		}
+//		return alternativas;
+		
 	}
 
 	@Override

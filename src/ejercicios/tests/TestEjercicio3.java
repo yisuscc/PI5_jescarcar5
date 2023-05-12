@@ -19,8 +19,8 @@ public class TestEjercicio3 {
 			TestsPI5.iniTest("Ejercicio3DatosEntrada", num_test, DatosEjercicio3::iniDatos);
 			Ejer3Vertex v_inicial = Ejer3Vertex.initial();
 			Predicate<Ejer3Vertex> es_terminal = Ejer3Vertex.goal();
-//			var gp = TestsPI5.testGreedy(GraphsPI5.greedyCursoGraph(v_inicial, es_terminal));
-//			TestsPI5.toConsole("Voraz", gp, SolucionCursos::of);
+			var gp = TestsPI5.testGreedy(GraphsPI5.greedyEjer3Graph(v_inicial, es_terminal));
+		TestsPI5.toConsole("Voraz", gp, SolucionEjercicio3::of);
 			
 			var path = TestsPI5.testAStar(GraphsPI5.ejer3Graph(v_inicial, es_terminal), null);
 			TestsPI5.toConsole("A*", path, SolucionEjercicio3::of);

@@ -1,4 +1,4 @@
-package ejemplos.tests.manual;
+package ejercicios.tests.manual;
 
 import java.util.Comparator;
 import java.util.List;
@@ -10,7 +10,7 @@ import _utils.TestsPI5;
 import ejercicios.ejercicio4.manual.RepartoBT;
 import us.lsi.common.String2;
 
-public class TestEM4 {
+public class TestEj4Manual {
 
 	public static void main(String[] args) {
 		List.of(1, 2).forEach(num_test -> {

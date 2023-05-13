@@ -69,24 +69,24 @@ public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>
 		Integer j = zIndex()%DatosEjercicio3.getNumTrabajos();
 		Integer i= zIndex()/DatosEjercicio3.getNumTrabajos();
 		Integer esp= DatosEjercicio3.getEspecialidadTrabajador(i);
-		Integer min= Math.min(days.get(esp),distribution().get(0).get(esp) )+1;
+		Integer min= Math.min(days.get(i),distribution().get(j).get(esp) );
 		return edge(min);
 		
 	}
 	@Override
 	public List<Integer> actions() {
-//		List<Integer> alternativas = List2.empty();
-//		Integer z = (DatosEjercicio3.getNumTrabajos()*DatosEjercicio3.getNumInvestigadores());
-//		Integer j = zIndex()%DatosEjercicio3.getNumTrabajos();
-//		Integer i= zIndex()/DatosEjercicio3.getNumTrabajos();
-//		
-//		
-//		if(zIndex<z) {
-//			Integer esp= DatosEjercicio3.getEspecialidadTrabajador(i);
-//			Integer min= Math.min(days.get(esp),distribution().get(0).get(esp) )+1;
-//			alternativas = List2.rangeList(0,min);
-//		}
-//		return alternativas;
+		List<Integer> alternativas = List2.empty();
+		Integer z = (DatosEjercicio3.getNumTrabajos()*DatosEjercicio3.getNumInvestigadores());
+		Integer j = zIndex()%DatosEjercicio3.getNumTrabajos();
+		Integer i= zIndex()/DatosEjercicio3.getNumTrabajos();
+		
+		
+		if(zIndex<z) {
+			Integer esp= DatosEjercicio3.getEspecialidadTrabajador(i);
+			Integer min= Math.min(days.get(i),distribution().get(j).get(esp));
+			alternativas = List2.rangeList(0,min+1);
+		}
+		return alternativas;
 		
 	}
 
@@ -127,12 +127,23 @@ public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>
 		return res;
 	}
 public  Double calidadObtenida() {
+	/// sirve tanto para sum como para last
 	Double res = 0.;
 	List<List<Integer>> dist = this.distribution();
 	for(int i = 0; i<dist.size();i++) {
-		if(todosIgualACero(dist.get(i))) {
+		
+		if(dist.get(i).stream().allMatch(e-> e.equals(0))) {
 			res+= DatosEjercicio3.getCalidadTrabajo(i);
 		}
+	}
+	return res;
+}
+public List<Integer>getDiasDispEsp(){
+	List<Integer> res = List2.ofTam(0, DatosEjercicio3.getNumEspecialidades());
+	for(int h = 0; h<days().size();h++) {
+		Integer esp = DatosEjercicio3.getEspecialidadTrabajador(h);
+		Integer sum = res.get(esp)+days().get(h);
+		res.set(esp,sum );
 	}
 	return res;
 }

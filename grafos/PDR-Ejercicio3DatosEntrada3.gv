@@ -1,0 +1,7 @@
+strict digraph G {
+  1 [ style="bold" label="Ejer3Vertex[zIndex=0, days=[1, 10, 3, 4, 10, 4, 1, 30], distribution=[[2, 0, 2, 0], [8, 5, 4, 2], [0, 5, 0, 15], [0, 7, 8, 5], [5, 5, 0, 2]]]" ];
+  2 [ style="solid" label="Ejer3Vertex[zIndex=1, days=[1, 10, 3, 4, 10, 4, 1, 30], distribution=[[2, 0, 2, 0], [8, 5, 4, 2], [0, 5, 0, 15], [0, 7, 8, 5], [5, 5, 0, 2]]]" ];
+  3 [ style="bold" label="Ejer3Vertex[zIndex=1, days=[1, 10, 2, 4, 10, 4, 1, 30], distribution=[[2, 0, 1, 0], [8, 5, 4, 2], [0, 5, 0, 15], [0, 7, 8, 5], [5, 5, 0, 2]]]" ];
+  1 -> 2 [ style="solid" label="Ejer3Edge[source=Ejer3Vertex[zIndex=0, days=[1, 10, 3, 4, 10, 4, 1, 30], distribution=[[2, 0, 2, 0], [8, 5, 4, 2], [0, 5, 0, 15], [0, 7, 8, 5], [5, 5, 0, 2]]], target=Ejer3Vertex[zIndex=1, days=[1, 10, 3, 4, 10, 4, 1, 30], distribution=[[2, 0, 2, 0], [8, 5, 4, 2], [0, 5, 0, 15], [0, 7, 8, 5], [5, 5, 0, 2]]], action=0, weight=0.0]" ];
+  1 -> 3 [ style="bold" label="Ejer3Edge[source=Ejer3Vertex[zIndex=0, days=[1, 10, 3, 4, 10, 4, 1, 30], distribution=[[2, 0, 2, 0], [8, 5, 4, 2], [0, 5, 0, 15], [0, 7, 8, 5], [5, 5, 0, 2]]], target=Ejer3Vertex[zIndex=1, days=[1, 10, 2, 4, 10, 4, 1, 30], distribution=[[2, 0, 1, 0], [8, 5, 4, 2], [0, 5, 0, 15], [0, 7, 8, 5], [5, 5, 0, 2]]], action=1, weight=0.0]" ];
+}

@@ -22,13 +22,13 @@ public class TestEjercicio3 {
 			var gp = TestsPI5.testGreedy(GraphsPI5.greedyEjer3Graph(v_inicial, es_terminal));
 		TestsPI5.toConsole("Voraz", gp, SolucionEjercicio3::of);
 			
-			var path = TestsPI5.testAStar(GraphsPI5.ejer3Graph(v_inicial, es_terminal), null);
+			var path = TestsPI5.testAStar(GraphsPI5.ejer3Graph(v_inicial, es_terminal), gp);
 			TestsPI5.toConsole("A*", path, SolucionEjercicio3::of);
 
-			path = TestsPI5.testPDR(GraphsPI5.ejer3Graph(v_inicial, es_terminal), null);
+			path = TestsPI5.testPDR(GraphsPI5.ejer3Graph(v_inicial, es_terminal), gp);
 			TestsPI5.toConsole("PDR", path, SolucionEjercicio3::of);
 
-			path = TestsPI5.testBT(GraphsPI5.ejer3Graph(v_inicial, es_terminal),null);
+			path = TestsPI5.testBT(GraphsPI5.ejer3Graph(v_inicial, es_terminal),gp);
 			TestsPI5.toConsole("BT", path, SolucionEjercicio3::of);
 
 			TestsPI5.line("*");

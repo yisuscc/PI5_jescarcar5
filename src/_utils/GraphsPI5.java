@@ -109,12 +109,12 @@ public class GraphsPI5 {
 	}
 	//ejercicio 3 grafo greedy 
 	public static EGraph<Ejer3Vertex, Ejer3Edge>greedyEjer3Graph(Ejer3Vertex v_inicial,Predicate<Ejer3Vertex>es_terminal){
-		return  EGraph.virtual(v_inicial,es_terminal,PathType.Last,Type.Max).vertexWeight(v->v.calidadObtenida()).
+		return  EGraph.virtual(v_inicial,es_terminal,PathType.Sum,Type.Max).
 				greedyEdge(Ejer3Vertex::greedyEdge).heuristic(Ejer3Heuristic::heuristic).build();
 	}
 	//Ejercio 3: Grafo no greedy
 	public static EGraph<Ejer3Vertex, Ejer3Edge>ejer3Graph(Ejer3Vertex v_inicial,Predicate<Ejer3Vertex>es_terminal){
-		return  EGraph.virtual(v_inicial,es_terminal,PathType.Last,Type.Max).vertexWeight(v->v.calidadObtenida()).
+		return  EGraph.virtual(v_inicial,es_terminal,PathType.Sum,Type.Max).
 				goalHasSolution(es_terminal).heuristic(Ejer3Heuristic::heuristic).build();
 	}
 	//Ejercicio 4: Grafo no greedy

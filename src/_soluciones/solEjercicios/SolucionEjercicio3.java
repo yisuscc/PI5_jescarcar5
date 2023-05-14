@@ -47,6 +47,9 @@ public class SolucionEjercicio3 implements Comparable<SolucionEjercicio3> {
 		sol = value;
 		calidad = calidadTotal;
 	}
+	public Integer getCalidad() {
+		return calidad;
+	}
 
 	@Override
 	public String toString() {

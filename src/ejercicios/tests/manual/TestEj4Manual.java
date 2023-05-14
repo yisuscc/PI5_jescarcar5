@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.function.Function;
 
 import _datos.DatosEjercicio4;
+import _soluciones.solEjercicios.SolucionEjercicio3;
 import _soluciones.solEjercicios.SolucionReparto;
 import _utils.TestsPI5;
+import ejercicios.ejercicio3.manual.Ejer3BT;
 import ejercicios.ejercicio4.manual.RepartoBT;
 import us.lsi.common.String2;
 

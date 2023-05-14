@@ -8,13 +8,13 @@ import java.util.Map.Entry;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
-import _datos.DatosEjercicio1;
+
 import _datos.DatosEjercicio3;
 import _datos.DatosEjercicio3.Trabajo;
-import _datos.DatosEjercicio4;
+
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
-import us.lsi.math.Math2;
+
 
 public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>> distribution)
 		implements VirtualVertex<Ejer3Vertex, Ejer3Edge, Integer> {
@@ -187,6 +187,7 @@ Boolean res = true;
 	}
 public  Double calidadObtenida() {
 	/// sirve tanto para sum como para last
+	//deberia ser integer, pero como pretendia qusarlo como tipo last, lo puse de tipo Double
 	Double res = 0.;
 	List<List<Integer>> dist = this.distribution();
 	for(int i = 0; i<dist.size();i++) {

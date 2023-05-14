@@ -13,7 +13,7 @@ public class Ejer3Heuristic {
 		 * Hesta heuristica itiera sobre el trabajo siguente al vertice no el actual
 		 * 
 		 */
-		Integer trabAct = v1.zIndex() % DatosEjercicio3.getNumTrabajos()  +1;
+		Integer trabAct = v1.zIndex() % DatosEjercicio3.getNumTrabajos()  ;
 		//NOTA: no se si empezar por el actual o el actiual +1
 		// filtramos las que diractamente no sean posibles,
 //	 luegode laos piosibles obtenenmos tiodass las calidades,

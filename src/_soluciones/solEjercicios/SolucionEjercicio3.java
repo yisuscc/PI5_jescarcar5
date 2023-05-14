@@ -1,6 +1,8 @@
 package _soluciones.solEjercicios;
 
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.jgrapht.GraphPath;
 
@@ -29,12 +31,15 @@ public class SolucionEjercicio3 implements Comparable<SolucionEjercicio3> {
 		Integer calidadTotal = 0;
 		Integer nTrabajos = DatosEjercicio3.getTrabajos().size();
 		Integer nInv = DatosEjercicio3.getInvestigadores().size();
-		for (int k = 0; k < nTrabajos; k++) {
-			Double dT = 0.0;
+		for (int k = 0; k < nTrabajos; k++) { 
+			Integer dT = 0;
+			Integer trab = k;
 			for (int l = k; l < value.size(); l = l + nTrabajos) {
 				dT += value.get(l);
 			}
-			if (dT > 0.0) {
+			Integer diasTotalTrab =  IntStream.
+					range(0, DatosEjercicio3.getNumEspecialidades()).map(e-> DatosEjercicio3.getDiasNecesariosEsp(trab, e)).sum();
+			if (dT ==diasTotalTrab) {
 				calidadTotal += DatosEjercicio3.getTrabajos().get(k).calidad();
 
 			}

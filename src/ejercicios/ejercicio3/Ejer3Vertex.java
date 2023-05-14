@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 import _datos.DatosEjercicio1;
 import _datos.DatosEjercicio3;
@@ -50,8 +51,9 @@ public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>
 	public static Predicate<Ejer3Vertex> goalHasSolution(){
 		//es solucion si todos los elementos de days son iguales o mayores que cero
 		//(es decir que no se ha superado la capacidad de cada trabajador)
+		// y si cada elemento de la distribución es 0 o igual al iniDistrib
 		
-		return v-> todosMayorIgualQueCero(v.days()); //TODO Cambiar 
+		return v-> todosMayorIgualQueCero(v.days()) ; //TODO Cambiar 
 		
 	}
 	private static Boolean todosMayorIgualQueCero(List<Integer> ls) {
@@ -64,13 +66,30 @@ public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>
 		}
 		return res;
 	}
-	// TODO GreedyEdge
+	private static Boolean distribACeroOInicial(List<List<Integer>> dis) {
+		/*
+		 * Es para evitar cojer investigadores de mas cuando no van a poder terminar el trabajo
+		 */
+		Boolean res = true;
+		List<List<Integer>> ls  = iniDistribution();
+		for(int g = 0; g<dis.size();g++) {
+			Integer o = g;
+			res = dis.get(g).stream().allMatch(e-> e.equals(0) || dis.equals(ls.get(o)));
+			if(!res) {
+				break;
+			}
+		}
+		
+		
+		return res;
+	}
+	
 	public Ejer3Edge greedyEdge() {
 		Integer j = zIndex()%DatosEjercicio3.getNumTrabajos();
 		Integer i= zIndex()/DatosEjercicio3.getNumTrabajos();
 		Integer esp= DatosEjercicio3.getEspecialidadTrabajador(i);
 		Integer min= Math.min(days.get(i),distribution().get(j).get(esp) );
-		return edge(min);
+		return esPosible()?edge(min):edge(0);
 		
 	}
 	@Override
@@ -83,17 +102,41 @@ public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>
 		
 		if(zIndex<z) {
 			Integer esp= DatosEjercicio3.getEspecialidadTrabajador(i);
-			Integer min= Math.min(days.get(i),distribution().get(j).get(esp));
-			alternativas = List2.rangeList(0,min+1);
+			Integer dia = days.get(i);
+			Integer di = distribution().get(j).get(esp);
+			Integer min = Math.min(dia, di);
+			
+		
+			alternativas = esPosible()?IntStream.range(0, min+1).boxed().toList():List2.of(0);
+		
 		}
 		return alternativas;
 		
+	}
+	private  Boolean esPosible() {
+		//determina si es posible que se haga el trabajo con lios dias restantes que queden
+		Boolean res = true;
+		
+		List<Integer> diasEspRestantes = this.getDiasDispEsp();
+		Integer inv = zIndex()/DatosEjercicio3.getNumTrabajos();
+		Integer trab = zIndex()%DatosEjercicio3.getNumTrabajos();
+		Integer esp = DatosEjercicio3.getEspecialidadTrabajador(inv);
+		List<Integer> diasNecesariosTrabajo = this.distribution().get(trab);
+		for (int q = 0; q < diasEspRestantes.size(); q++) {
+			
+			res = diasEspRestantes.get(q) >= diasNecesariosTrabajo.get(q);
+			if (!res) {
+				break;
+			}
+		}
+
+		return res;
 	}
 
 	@Override
 	public Ejer3Vertex neighbor(Integer a) {
 		// primero decrementamos el valor correspondiente en days
-		List<Integer> dias= decrementor(days, a, zIndex());
+		List<Integer> dias= this.decrementor( a);
 		List<List<Integer>> dist = decrementorDobleLista(distribution, a, zIndex());
 		
 		
@@ -102,14 +145,14 @@ public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>
 		
 		return of(zIndex+1, dias, dist);
 	}
-	public static List<Integer> decrementor(List<Integer> rem, Integer a, Integer ind){
-		
-	
+	private List<Integer> decrementor( Integer a){
+		Integer ind = zIndex();
+		List<Integer> rem = List2.copy(days());
 		List<Integer> res = List2.copy(rem);
 		Integer inv = ind/DatosEjercicio3.getNumTrabajos();
-		Integer esp= DatosEjercicio3.getEspecialidadTrabajador(inv);
-		Integer r = rem.get(esp)-a;
-		res.set(esp, r);
+		
+		Integer r = rem.get(inv)-a;
+		res.set(inv, r);
 		
 		
 		return res;

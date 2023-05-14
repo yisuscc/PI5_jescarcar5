@@ -63,7 +63,7 @@ public class RepartoState {
 		if(prob_ant.index()==DatosEjercicio4.getN()-1) {
 			pen += DatosEjercicio4.getPesoArista(p, 0);
 		}
-		 
+		acumulado -= DatosEjercicio4.getBeneficioCliente(p)-pen;
 		acciones.remove(last);
 		anteriores.remove(last);
 		//obtengo el estado anterior

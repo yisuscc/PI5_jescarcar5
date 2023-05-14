@@ -49,10 +49,11 @@ public record Ejer3Problem(Integer zIndex, List<Integer> days, List<List<Integer
 			Integer dia = days.get(i);
 			Integer di = distribution().get(j).get(esp);
 			Integer min = Math.min(dia, di);
-
-			alternativas = esPosible() ? IntStream.range(0, min + 1).boxed().toList() : List2.of(0);
+			Boolean cond = esPosible();
+			alternativas =  cond? IntStream.range(0, min + 1).boxed().toList() : List2.of(0);
 
 		}
+		
 		return alternativas;
 
 	}
@@ -166,7 +167,7 @@ public record Ejer3Problem(Integer zIndex, List<Integer> days, List<List<Integer
 	public Boolean isSolution() {
 		
 //		creo que lal soluciomn realmente es que sea terminal y que la suma de las calidades sea mayo r que cero 
-		return isTerminal() && days().stream().allMatch(x-> x>=0);
+		return isTerminal();
 	}
 
 }

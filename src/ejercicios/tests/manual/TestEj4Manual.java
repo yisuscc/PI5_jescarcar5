@@ -15,6 +15,8 @@ import us.lsi.common.String2;
 public class TestEj4Manual {
 
 	public static void main(String[] args) {
+		System.out.println("Si el resultado no es correcto,pon el kmsMedio de la heuristica a 1.");
+		System.out.println("o bien pon la cota a Double.MaxValue");
 		List.of(1, 2).forEach(num_test -> {
 			DatosEjercicio4.iniDatos("ficheros/Ejercicio4DatosEntrada" + num_test + ".txt");
 			RepartoBT.search();

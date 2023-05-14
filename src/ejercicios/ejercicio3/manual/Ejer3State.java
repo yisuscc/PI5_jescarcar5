@@ -2,6 +2,7 @@ package ejercicios.ejercicio3.manual;
 
 import java.util.List;
 
+import _datos.DatosEjercicio3;
 import _soluciones.solEjercicios.SolucionEjercicio3;
 import us.lsi.common.List2;
 
@@ -62,7 +63,9 @@ public class Ejer3State {
 	
 	//cota
 	public Double cota(Integer a) {
+		Double dif = Math.abs(actual.calidadObtenida()-actual.neighbor(a).calidadObtenida());
 		return acumulado +actual.neighbor(a).heuristic();
+		
 	}
 	
 	
@@ -73,7 +76,7 @@ public class Ejer3State {
 	
 	//esTreminal
 	public Boolean esTerminal() {
-		return actual.isTerminal();
+		return actual.zIndex().equals(DatosEjercicio3.getNumInvestigadores()*DatosEjercicio3.getNumTrabajos());
 	}
 	
 	//getSolucion

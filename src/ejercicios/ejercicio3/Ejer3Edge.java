@@ -4,7 +4,7 @@ import us.lsi.graphs.virtual.SimpleEdgeAction;
 
 public record Ejer3Edge(Ejer3Vertex source, Ejer3Vertex target, Integer action, Double weight)
 		implements SimpleEdgeAction<Ejer3Vertex, Integer> {
-	//como va a ser de tipo last y no de tipo sum, 
+	
 	
 	/*
 	 * Para convertirlo a tipo sum,

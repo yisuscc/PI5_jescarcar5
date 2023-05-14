@@ -15,7 +15,7 @@ import ejercicios.ejercicio3.Ejer3Vertex;
 public class TestEjercicio3 {
 
 	public static void main(String[] args) {
-		List.of(1, 2,3).forEach(num_test -> {
+		List.of(1,2,3).forEach(num_test -> {
 			TestsPI5.iniTest("Ejercicio3DatosEntrada", num_test, DatosEjercicio3::iniDatos);
 			Ejer3Vertex v_inicial = Ejer3Vertex.initial();
 			Predicate<Ejer3Vertex> es_terminal = Ejer3Vertex.goal();

@@ -93,6 +93,9 @@ public class DatosEjercicio4 {
 	public static Boolean existeArista(Integer i, Integer j) {
 		return intGrafo.containsEdge(i, j);
 	}
+	public static Double getMediaKms() {
+		return intGrafo.edgeSet().stream().mapToDouble(k->k.weight()).average().orElse(0.);
+	}
 	public static void test() {
 		String fichero = "ficheros/Ejercicio4DatosEntrada1.txt";
 		iniDatos(fichero);

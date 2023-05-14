@@ -13,7 +13,7 @@ public record Ejer3Edge(Ejer3Vertex source, Ejer3Vertex target, Integer action, 
 	 */
 	//el peso va a ser 1
 	public static Ejer3Edge of(Ejer3Vertex s, Ejer3Vertex t, Integer a) {
-		Double w = (s.calidadObtenida()!=t.calidadObtenida())?Math.abs(s.calidadObtenida()-t.calidadObtenida()):1.;
+		Double w = (s.calidadObtenida()!=t.calidadObtenida())?Math.abs(s.calidadObtenida()-t.calidadObtenida()):0.;
 		return new Ejer3Edge(s, t, a, w);
 	}
 

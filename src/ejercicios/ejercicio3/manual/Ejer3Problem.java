@@ -140,7 +140,7 @@ public record Ejer3Problem(Integer zIndex, List<Integer> days, List<List<Integer
 	public Double heuristic() {
 		Integer trabAct = zIndex() % DatosEjercicio3.getNumTrabajos();
 		return IntStream.range(trabAct, DatosEjercicio3.getNumTrabajos()).boxed().filter(j -> esPosibleHeuristic(j))
-				.mapToDouble(j -> DatosEjercicio3.getCalidadTrabajo(j)).sum();
+			.mapToDouble(j -> DatosEjercicio3.getCalidadTrabajo(j)).sum();	
 	}
 
 	private Boolean esPosibleHeuristic(Integer trab) {
@@ -164,7 +164,9 @@ public record Ejer3Problem(Integer zIndex, List<Integer> days, List<List<Integer
 	}
 
 	public Boolean isSolution() {
-		return days().stream().allMatch(x-> x>=0);
+		
+//		creo que lal soluciomn realmente es que sea terminal y que la suma de las calidades sea mayo r que cero 
+		return isTerminal() && days().stream().allMatch(x-> x>=0);
 	}
 
 }

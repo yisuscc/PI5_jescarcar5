@@ -78,7 +78,11 @@ public class RepartoState {
 	}
 	//TODO cota
 	public Double cota(Integer a) {
-		return Double.MAX_VALUE;//para forzar a que lo coja
+	//	return Double.MAX_VALUE;//para forzar a que lo coja
+		Integer c = this.actual.cliente();
+		Integer km = this.actual.kms();
+		Double ben = DatosEjercicio4.getBeneficioCliente(a)-DatosEjercicio4.getPesoArista(c, a)-km;
+		return acumulado+km+ actual.neighbor(a).heuristic();
 	}
 	
 	//essolucion

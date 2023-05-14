@@ -15,6 +15,7 @@ import ejercicios.ejercicio4.RepartoVertex;
 public class TestEjercicio4 {
 
 	public static void main(String[] args) {
+		System.out.println("Si el resultado no es correcto,pon el kmsMedio de la heuristica a 1.");
 		List.of(1, 2).forEach(num_test -> {
 			TestsPI5.iniTest("Ejercicio4DatosEntrada", num_test, DatosEjercicio4::iniDatos);
 			RepartoVertex v_inicial = RepartoVertex.initial();

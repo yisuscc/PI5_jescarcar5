@@ -18,25 +18,22 @@ public class Ejer3BT {
 		bt_search();
 	}
 
-	private static void bt_search() {
-		// el objetivo es generar un
-		if (estado.esSolucion()) {
+	private static void  bt_search() {
+		if(estado.esSolucion()) {
 			Double valorObtenido = estado.acumulado;
-			if (valorObtenido > mejorValor) { // Estamos minimizando
+			if(valorObtenido > mejorValor) {
 				mejorValor = valorObtenido;
 				soluciones.add(estado.getSolucion());
 			}
-		} else if (!estado.esTerminal()) {
-			// siempre y cuando no haya termicado estudio las alternativas de cada estado
-			for (Integer a : estado.alternativas()) {
-//				me interesa ir por esa rama
-//				depende si la cota  es mayosd que , entonces se porque estoy maximizando
-				if (estado.cota(a) >= mejorValor) { // Estamos maximizando
+		}else if(!estado.esTerminal()) {//siempre ycuando no haya terminado estudio las alternativas de cada vertice
+			for(Integer a: estado.alternativas()) {
+				if(estado.cota(a)>= mejorValor) {
 					estado.forward(a);
 					bt_search();
 					estado.back();
 				}
 			}
+			
 		}
 	}
 	public static Set<SolucionEjercicio3> getSoluciones(){

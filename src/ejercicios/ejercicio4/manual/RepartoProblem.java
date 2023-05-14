@@ -1,7 +1,9 @@
 package ejercicios.ejercicio4.manual;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
 
 import _datos.DatosEjercicio4;
 import us.lsi.common.List2;
@@ -52,7 +54,15 @@ public record RepartoProblem(Integer index, Integer cliente, Set<Integer> pendie
 	}
 	// heuristica
 	public Double heuristic() { //TODO Hacerl a heuristica
-		return 1.;
+		Double res =0.;
+		Set<Integer> r = Set2.copy(pendientes());
+		Function<Integer,Double> funk= i -> DatosEjercicio4.getBeneficioCliente(i);
+		List<Integer> clientes = r.stream().sorted(Comparator.comparing(funk).reversed()).toList();
+		 Double kmsMedio= DatosEjercicio4.getMediaKms();//se puede utilizar para averiguar la media DatosEjerrcicio4.getMediaKms
+		for(Integer c: clientes) {
+			res += DatosEjercicio4.getBeneficioCliente(c)-clientes.indexOf(c)*kmsMedio;
+		}
+		return res;
 	}
 
 }

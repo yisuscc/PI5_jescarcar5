@@ -7,7 +7,7 @@ import us.lsi.common.List2;
 
 public class Ejer3State {
 	Ejer3Problem actual;
-	Double acumulado; //mas bien peso actual y creo que sobra tipo last
+	Double acumulado;
 	List<Integer> acciones;
 	List<Ejer3Problem>anteriores;
 	//constructorr privado
@@ -26,13 +26,13 @@ public class Ejer3State {
 	
 	//initial
 	public static Ejer3State initial() {
-		return of(Ejer3Problem.initial(),Ejer3Problem.initial().calidadObtenida(),List2.empty(),List2.empty());
+		return of(Ejer3Problem.initial(),0.,List2.empty(),List2.empty());
 	}
 	
 	//foward 
 	public void forward(Integer a) {
 		//actualizamos el acumulado
-		acumulado = actual.neighbor(a).calidadObtenida();
+		acumulado += Math.abs((actual.neighbor(a).calidadObtenida()-actual.calidadObtenida()));
 		//añadimos el paso xDD
 		acciones.add(a);
 		//añadimos el subproblema
@@ -43,12 +43,12 @@ public class Ejer3State {
 	
 	//back 
 	public void back() {
-		//obtengo la última acción por la que ehe pasado
+		//obtengo la última acción por la que he pasado
 		int last = acciones.size()-1;	
 		//obtengo el ultimo subproblema por el que he pasado
 		var probAnt = anteriores.get(last);
-		//dessahoo el acumulado
-		acumulado = probAnt.calidadObtenida();
+		//desgahoo el acumulado
+		acumulado -= Math.abs(actual.calidadObtenida()-probAnt.calidadObtenida());
 		acciones.remove(last);
 		anteriores.remove(last);
 		//obtengo el estado anterior

@@ -20,8 +20,9 @@ public class TestEj3Manual {
 			DatosEjercicio3.iniDatos("ficheros/Ejercicio3DatosEntrada" + num_test + ".txt");
 			Ejer3BT.search();
 			Function<SolucionEjercicio3,Integer>funk  = v-> v.getCalidad();
-		    SolucionEjercicio3 sr=  Ejer3BT.getSoluciones().stream().max(Comparator.comparing(funk)).get();
-		    String2.toConsole("Solucion obtenida: %s\n", sr);
+		    //SolucionEjercicio3 sr=  Ejer3BT.getSoluciones().stream().max(Comparator.comparing(funk)).get();
+			//String2.toConsole("Solucion obtenida: %s\n", sr);
+			Ejer3BT.getSoluciones().stream().forEach(sr-> String2.toConsole("Solucion obtenida: %s\n", sr));
 			TestsPI5.line("*");
 		});
 	}

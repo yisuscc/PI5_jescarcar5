@@ -1,6 +1,7 @@
 package ejercicios.ejercicio4;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -12,8 +13,16 @@ import us.lsi.common.Set2;
 public class RepartoHeuristica {
 	
 	public static Double heuristic(RepartoVertex v1 , Predicate<RepartoVertex> goal, RepartoVertex v2) {
+		Double res =0.;
 		Set<Integer> r = Set2.copy(v1.pendientes());
-		return 5000.;
+		Function<Integer,Double> funk= i -> DatosEjercicio4.getBeneficioCliente(i);
+		List<Integer> clientes = r.stream().sorted(Comparator.comparing(funk).reversed()).toList();
+		 Double kmsMedio= DatosEjercicio4.getMediaKms();//1.; si no funciona ponerlo a 1.
+		 //se puede utilizar para averiguar la media DatosEjerrcicio4.getMediaKms
+		for(Integer c: clientes) {
+			res += DatosEjercicio4.getBeneficioCliente(c)-clientes.indexOf(c)*kmsMedio;
+		}
+		return res;
 	}
 //	public static Double pesoVoraz(RepartoVertex v1 , Predicate<RepartoVertex> goal, RepartoVertex v2) {
 //		Double peso = 0.;

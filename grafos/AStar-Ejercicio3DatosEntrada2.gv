@@ -1,3 +1,2 @@
 strict digraph G {
-  1 [ style="bold" label="Ejer3Vertex[zIndex=0, days=[10, 5, 8, 2, 5], distribution=[[2, 0, 5, 0], [8, 4, 3, 0], [2, 0, 0, 7]]]" ];
 }

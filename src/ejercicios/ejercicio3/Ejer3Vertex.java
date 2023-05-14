@@ -132,6 +132,22 @@ public record Ejer3Vertex(Integer zIndex, List<Integer> days, List<List<Integer>
 
 		return res;
 	}
+	public Boolean esPosibleHeuristic(Integer trab) {
+Boolean res = true;
+		
+		List<Integer> diasEspRestantes = this.getDiasDispEsp();
+		List<Integer> diasNecesariosTrabajo = this.distribution().get(trab);
+		for (int q = 0; q < diasEspRestantes.size(); q++) {
+			
+			res = diasEspRestantes.get(q) >= diasNecesariosTrabajo.get(q);
+			if (!res) {
+				break;
+			}
+		}
+
+		return res;
+		
+	}
 
 	@Override
 	public Ejer3Vertex neighbor(Integer a) {

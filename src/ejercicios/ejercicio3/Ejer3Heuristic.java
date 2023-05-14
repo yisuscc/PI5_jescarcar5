@@ -18,8 +18,9 @@ public class Ejer3Heuristic {
 		// filtramos las que diractamente no sean posibles,
 //	 luegode laos piosibles obtenenmos tiodass las calidades,
 		// hacemos el sum de todas las calidades (es optimista)
+		//TODO Mejorar 
 		return IntStream.range(trabAct, DatosEjercicio3.getNumTrabajos()).
-		boxed().filter(j->esPosible(v1.getDiasDispEsp(), trabAct)).mapToDouble(j-> DatosEjercicio3.getCalidadTrabajo(j)).sum();
+		boxed().filter(j->v1.esPosibleHeuristic(j)).mapToDouble(j-> DatosEjercicio3.getCalidadTrabajo(j)).sum();
 		
 	}
 

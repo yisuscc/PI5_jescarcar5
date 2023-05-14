@@ -1,2 +1,19 @@
 strict digraph G {
+  1 [ style="bold" label="RepartoVertex[index=1, cliente=0, pendientes=[1, 2, 3, 4], visitados=[0], kms=0]" ];
+  2 [ style="bold" label="RepartoVertex[index=3, cliente=2, pendientes=[3, 4], visitados=[0, 1, 2], kms=2]" ];
+  3 [ style="solid" label="RepartoVertex[index=3, cliente=3, pendientes=[2, 4], visitados=[0, 1, 3], kms=101]" ];
+  4 [ style="bold" label="RepartoVertex[index=2, cliente=1, pendientes=[2, 3, 4], visitados=[0, 1], kms=1]" ];
+  5 [ style="solid" label="RepartoVertex[index=2, cliente=3, pendientes=[1, 2, 4], visitados=[0, 3], kms=100]" ];
+  6 [ style="bold" label="RepartoVertex[index=5, cliente=4, pendientes=[], visitados=[0, 1, 2, 3, 4], kms=4]" ];
+  7 [ style="solid" label="RepartoVertex[index=2, cliente=4, pendientes=[1, 2, 3], visitados=[0, 4], kms=5]" ];
+  8 [ style="bold" label="RepartoVertex[index=4, cliente=3, pendientes=[4], visitados=[0, 1, 2, 3], kms=3]" ];
+  9 [ style="solid" label="RepartoVertex[index=4, cliente=4, pendientes=[3], visitados=[0, 1, 2, 4], kms=102]" ];
+  4 -> 2 [ style="bold" label="RepartoEdge[source=RepartoVertex[index=2, cliente=1, pendientes=[2, 3, 4], visitados=[0, 1], kms=1], target=RepartoVertex[index=3, cliente=2, pendientes=[3, 4], visitados=[0, 1, 2], kms=2], action=2, weight=298.0]" ];
+  4 -> 3 [ style="solid" label="RepartoEdge[source=RepartoVertex[index=2, cliente=1, pendientes=[2, 3, 4], visitados=[0, 1], kms=1], target=RepartoVertex[index=3, cliente=3, pendientes=[2, 4], visitados=[0, 1, 3], kms=101], action=3, weight=99.0]" ];
+  1 -> 4 [ style="bold" label="RepartoEdge[source=RepartoVertex[index=1, cliente=0, pendientes=[1, 2, 3, 4], visitados=[0], kms=0], target=RepartoVertex[index=2, cliente=1, pendientes=[2, 3, 4], visitados=[0, 1], kms=1], action=1, weight=399.0]" ];
+  1 -> 5 [ style="solid" label="RepartoEdge[source=RepartoVertex[index=1, cliente=0, pendientes=[1, 2, 3, 4], visitados=[0], kms=0], target=RepartoVertex[index=2, cliente=3, pendientes=[1, 2, 4], visitados=[0, 3], kms=100], action=3, weight=100.0]" ];
+  8 -> 6 [ style="bold" label="RepartoEdge[source=RepartoVertex[index=4, cliente=3, pendientes=[4], visitados=[0, 1, 2, 3], kms=3], target=RepartoVertex[index=5, cliente=4, pendientes=[], visitados=[0, 1, 2, 3, 4], kms=4], action=4, weight=91.0]" ];
+  1 -> 7 [ style="solid" label="RepartoEdge[source=RepartoVertex[index=1, cliente=0, pendientes=[1, 2, 3, 4], visitados=[0], kms=0], target=RepartoVertex[index=2, cliente=4, pendientes=[1, 2, 3], visitados=[0, 4], kms=5], action=4, weight=95.0]" ];
+  2 -> 8 [ style="bold" label="RepartoEdge[source=RepartoVertex[index=3, cliente=2, pendientes=[3, 4], visitados=[0, 1, 2], kms=2], target=RepartoVertex[index=4, cliente=3, pendientes=[4], visitados=[0, 1, 2, 3], kms=3], action=3, weight=197.0]" ];
+  2 -> 9 [ style="solid" label="RepartoEdge[source=RepartoVertex[index=3, cliente=2, pendientes=[3, 4], visitados=[0, 1, 2], kms=2], target=RepartoVertex[index=4, cliente=4, pendientes=[3], visitados=[0, 1, 2, 4], kms=102], action=4, weight=-2.0]" ];
 }

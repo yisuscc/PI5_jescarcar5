@@ -13,7 +13,7 @@ public class RepartoHeuristica {
 	
 	public static Double heuristic(RepartoVertex v1 , Predicate<RepartoVertex> goal, RepartoVertex v2) {
 		Set<Integer> r = Set2.copy(v1.pendientes());
-		return 1.;
+		return 5000.;
 	}
 //	public static Double pesoVoraz(RepartoVertex v1 , Predicate<RepartoVertex> goal, RepartoVertex v2) {
 //		Double peso = 0.;
